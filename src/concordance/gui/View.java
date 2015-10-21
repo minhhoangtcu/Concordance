@@ -14,6 +14,7 @@ import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import javax.swing.JTabbedPane;
 
 public class View extends JFrame {
 
@@ -47,7 +48,7 @@ public class View extends JFrame {
 		mainPane = new JPanel();
 		mainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPane);
-		mainPane.setLayout(new MigLayout("", "[grow]", "[85%,grow][15%]"));
+		mainPane.setLayout(new MigLayout("", "[100%]", "[85%][15%]"));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		mainPane.add(scrollPane, "cell 0 0,grow");
@@ -56,41 +57,54 @@ public class View extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JPanel commandsPanel = new JPanel();
-		mainPane.add(commandsPanel, "cell 0 1,alignx center");
-		commandsPanel.setLayout(new MigLayout("", "[20%][40%,grow][40%,grow][20%]", "[20%,grow][40%][40%,grow]"));
+		mainPane.add(commandsPanel, "cell 0 1,growx");
+		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[20%][30%][30%][30%,grow]"));
+		
+		JLabel lblFeedback = new JLabel("Feedback");
+		commandsPanel.add(lblFeedback, "cell 0 0 5 1,alignx center,aligny center");
 		
 		JLabel lblKeyword = new JLabel("Find Keyword:");
-		commandsPanel.add(lblKeyword, "cell 1 0,alignx trailing");
+		commandsPanel.add(lblKeyword, "cell 1 1,alignx trailing");
 		
 		txtKeyword = new JTextField();
-		commandsPanel.add(txtKeyword, "cell 2 0,growx");
+		commandsPanel.add(txtKeyword, "cell 2 1,growx");
 		txtKeyword.setColumns(10);
 		
 		JButton btnSearchKeyword = new JButton("Search");
-		commandsPanel.add(btnSearchKeyword, "cell 3 0,alignx left,aligny top");
+		commandsPanel.add(btnSearchKeyword, "cell 3 1,alignx left,aligny top");
+		
+		JPanel panelButtonsCommon = new JPanel();
+		commandsPanel.add(panelButtonsCommon, "cell 4 1 1 3,grow");
+		panelButtonsCommon.setLayout(new GridLayout(3, 0, 0, 0));
+		
+		JButton btnLoadCommonWords = new JButton("Load Common Words");
+		panelButtonsCommon.add(btnLoadCommonWords);
+		
+		JButton btnRemoveAllCommon = new JButton("Remove All Common Words");
+		panelButtonsCommon.add(btnRemoveAllCommon);
 		
 		JLabel lblBeginWord = new JLabel("Find words begin with:");
-		commandsPanel.add(lblBeginWord, "cell 1 1,alignx trailing");
+		commandsPanel.add(lblBeginWord, "cell 1 2,alignx trailing");
 		
 		txtBeginWord = new JTextField();
-		commandsPanel.add(txtBeginWord, "cell 2 1,growx");
+		commandsPanel.add(txtBeginWord, "cell 2 2,growx");
 		txtBeginWord.setColumns(10);
 		
 		JButton buttonSearchBeginWord = new JButton("Search");
-		commandsPanel.add(buttonSearchBeginWord, "cell 3 1");
+		commandsPanel.add(buttonSearchBeginWord, "cell 3 2");
 		
-		JPanel panelButtons = new JPanel();
-		commandsPanel.add(panelButtons, "cell 0 0 1 3,grow");
-		panelButtons.setLayout(new GridLayout(3, 0, 0, 0));
+		JPanel panelButtonsDisplay = new JPanel();
+		commandsPanel.add(panelButtonsDisplay, "cell 0 1 1 3,grow");
+		panelButtonsDisplay.setLayout(new GridLayout(3, 0, 0, 0));
 		
 		JButton btnDisplayAll = new JButton("Display All");
-		panelButtons.add(btnDisplayAll);
+		panelButtonsDisplay.add(btnDisplayAll);
 		
 		JButton btnGetSmallest = new JButton("Get Smallest");
-		panelButtons.add(btnGetSmallest);
+		panelButtonsDisplay.add(btnGetSmallest);
 		
 		JButton btnGetBiggest = new JButton("Get Biggest");
-		panelButtons.add(btnGetBiggest);
+		panelButtonsDisplay.add(btnGetBiggest);
 	}
 
 }
