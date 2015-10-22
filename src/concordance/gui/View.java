@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import java.awt.Color;
 
 public class View extends JFrame {
 
@@ -25,6 +26,7 @@ public class View extends JFrame {
 	private JButton btnSearchKeyword;
 	private JButton btnSearchBeginWord;
 	private JLabel lblFeedback;
+	private JButton btnLoadConcordance;
 
 	/**
 	 * Create the frame.
@@ -44,15 +46,11 @@ public class View extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		mainPane.add(scrollPane, "cell 0 0,grow");
 
-		table = new JTable(getPlaceHolderData(), getPlaceHolderNames()); // FAKE
-																			// DATA/USED
-																			// AS
-																			// PLACEHOLDER
-																			// FOR
-																			// THE
-																			// FUTURE
-																			// IMPLEMENT
-																			// DATA
+		table = new JTable(getPlaceHolderData(), getPlaceHolderNames());
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table.getColumnModel().getColumn(2).setPreferredWidth(20);
+		table.getColumnModel().getColumn(3).setPreferredWidth(500);
 		scrollPane.setViewportView(table);
 
 		/*
@@ -63,7 +61,7 @@ public class View extends JFrame {
 		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[20%][30%][30%][30%,grow]"));
 
 		lblFeedback = new JLabel("Feedback");
-		commandsPanel.add(lblFeedback, "cell 0 0 5 1,alignx center,aligny center");
+		commandsPanel.add(lblFeedback, "cell 1 0 4 1,alignx center,aligny center");
 
 		JLabel lblKeyword = new JLabel("Find Keyword:");
 		commandsPanel.add(lblKeyword, "cell 1 1,alignx trailing");
@@ -73,6 +71,7 @@ public class View extends JFrame {
 		txtKeyword.setColumns(10);
 
 		btnSearchKeyword = new JButton("Search");
+		btnSearchKeyword.setBackground(Color.WHITE);
 		commandsPanel.add(btnSearchKeyword, "cell 3 1,alignx left,aligny top");
 
 		JPanel panelButtonsCommon = new JPanel();
@@ -80,9 +79,11 @@ public class View extends JFrame {
 		panelButtonsCommon.setLayout(new GridLayout(3, 0, 0, 0));
 
 		btnLoadCommonWords = new JButton("Load Common Words");
+		btnLoadCommonWords.setBackground(Color.WHITE);
 		panelButtonsCommon.add(btnLoadCommonWords);
 
 		btnRemoveAllCommon = new JButton("Remove All Common Words");
+		btnRemoveAllCommon.setBackground(Color.WHITE);
 		panelButtonsCommon.add(btnRemoveAllCommon);
 
 		JLabel lblBeginWord = new JLabel("Find words begin with:");
@@ -93,135 +94,77 @@ public class View extends JFrame {
 		txtBeginWord.setColumns(10);
 
 		btnSearchBeginWord = new JButton("Search");
+		btnSearchBeginWord.setBackground(Color.WHITE);
 		commandsPanel.add(btnSearchBeginWord, "cell 3 2");
 
 		JPanel panelButtonsDisplay = new JPanel();
-		commandsPanel.add(panelButtonsDisplay, "cell 0 1 1 3,grow");
-		panelButtonsDisplay.setLayout(new GridLayout(3, 0, 0, 0));
+		commandsPanel.add(panelButtonsDisplay, "cell 0 0 1 4,grow");
+		panelButtonsDisplay.setLayout(new GridLayout(4, 0, 0, 0));
+		
+		btnLoadConcordance = new JButton("Load Concordance");
+		btnLoadConcordance.setBackground(Color.WHITE);
+		panelButtonsDisplay.add(btnLoadConcordance);
 
 		btnDisplayAll = new JButton("Display All");
+		btnDisplayAll.setBackground(Color.WHITE);
 		panelButtonsDisplay.add(btnDisplayAll);
 
 		btnGetSmallest = new JButton("Get Smallest");
+		btnGetSmallest.setBackground(Color.WHITE);
 		panelButtonsDisplay.add(btnGetSmallest);
 
 		btnGetBiggest = new JButton("Get Biggest");
+		btnGetBiggest.setBackground(Color.WHITE);
 		panelButtonsDisplay.add(btnGetBiggest);
 	}
 
 	private String[] getPlaceHolderNames() {
-		String[] columnNames = { "First Name", "Last Name", "Sport", "# of Years", "Vegetarian" };
+		String[] columnNames = { "Word", "Paragraph #", "Sentence #", "Word Context"};
 		return columnNames;
 	}
 
 	private Object[][] getPlaceHolderData() {
 		Object[][] data = { 
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) },
-				{ "Kathy", "Smith", "Snowboarding", new Integer(5), new Boolean(false) },
-				{ "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-				{ "Sue", "Black", "Knitting", new Integer(2), new Boolean(false) },
-				{ "Jane", "White", "Speed reading", new Integer(20), new Boolean(true) },
-				{ "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) }
-
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
+				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"}
 		};
 		return data;
 	}
