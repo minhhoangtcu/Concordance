@@ -241,4 +241,7 @@ public class View extends JFrame {
 	public void setLblFeedback(String text) {
 		lblFeedback.setText(text);
 	}
+	public JButton getBtnLoadConcordance() {
+		return btnLoadConcordance;
+	}
 }

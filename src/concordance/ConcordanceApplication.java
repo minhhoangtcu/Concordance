@@ -1,4 +1,6 @@
 package concordance;
+import concordance.gui.Control;
+import concordance.gui.Model;
 import concordance.gui.View;
 
 /*
@@ -15,7 +17,9 @@ import concordance.gui.View;
 public class ConcordanceApplication {
 	
 	public static void main(String[] args) {
+		Model model = new Model();
 		View view = new View();
+		Control control = new Control(view, model);
 		view.setVisible(true);
 	}
 
