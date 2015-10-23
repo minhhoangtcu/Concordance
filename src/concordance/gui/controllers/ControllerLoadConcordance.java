@@ -29,7 +29,8 @@ public class ControllerLoadConcordance implements ActionListener {
 			 File selectedFile = fc.getSelectedFile();
 			    try {
 					BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-					ConcordanceReader.read(reader);
+					ConcordanceReader concorReader = new ConcordanceReader();
+					concorReader.read(reader);
 			    } catch (FileNotFoundException e1) {
 			    	e1.printStackTrace();
 			    } catch (IOException e1) {
