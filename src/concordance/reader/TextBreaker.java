@@ -33,15 +33,27 @@ public class TextBreaker {
         return list;
 	}
 	
+	/*
+	 * Use the class in default Java library to split a sentence into many words
+	 * @param any sentence type String
+	 * 
+	 */
 	public static List<String> getWords(String text) {
 		List<String> list = new LinkedList<>();
 		BreakIterator boundary = BreakIterator.getWordInstance(Locale.US);
 		boundary.setText(text);
         int start = boundary.first();
         for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
-            list.add(text.substring(start, end));
+        	String adding = text.substring(start, end);
+        	if (!containsSpecialCharacter(adding)) {
+        		list.add(text.substring(start, end).toLowerCase());
+        	}
         }
         return list;
+	}
+	
+	public static boolean containsSpecialCharacter(String s) {
+	    return (s == null) ? false : s.matches("[^A-Za-z0-9]");
 	}
 	
 	/*
