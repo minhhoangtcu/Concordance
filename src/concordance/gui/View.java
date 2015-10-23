@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.Color;
+import javax.swing.JTextArea;
 
 public class View extends JFrame {
 
@@ -27,6 +28,8 @@ public class View extends JFrame {
 	private JButton btnSearchBeginWord;
 	private JLabel lblFeedback;
 	private JButton btnLoadConcordance;
+	private JPanel displayPanel;
+	private JTextArea displayField;
 
 	/**
 	 * Create the frame.
@@ -37,25 +40,32 @@ public class View extends JFrame {
 		mainPane = new JPanel();
 		mainPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(mainPane);
-		mainPane.setLayout(new MigLayout("", "[100%]", "[85%][15%]"));
+		mainPane.setLayout(new MigLayout("", "[100%,grow]", "[85%,grow][15%]"));
 		setTitle("Concordance Application - Minh Hoang");
 
 		/*
 		 * Table (top) section
 		 */
-		JScrollPane scrollPane = new JScrollPane();
-		mainPane.add(scrollPane, "cell 0 0,grow");
-
-		table = new JTable(getPlaceHolderData(), getPlaceHolderNames());
-		table.getColumnModel().getColumn(0).setPreferredWidth(100);
-		table.getColumnModel().getColumn(1).setPreferredWidth(20);
-		table.getColumnModel().getColumn(2).setPreferredWidth(20);
-		table.getColumnModel().getColumn(3).setPreferredWidth(500);
-		scrollPane.setViewportView(table);
 
 		/*
 		 * Commands (input, bottom) section
 		 */
+		
+		displayPanel = new JPanel();
+		mainPane.add(displayPanel, "cell 0 0,grow");
+		displayPanel.setLayout(new MigLayout("", "[20%][80%,grow]", "[100%,grow]"));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		displayPanel.add(scrollPane, "cell 0 0,grow");
+		
+		table = new JTable(getPlaceHolderData(), getPlaceHolderNames());
+		table.getColumnModel().getColumn(0).setPreferredWidth(100);
+		table.getColumnModel().getColumn(1).setPreferredWidth(20);
+		scrollPane.setViewportView(table);
+		
+		displayField = new JTextArea();
+		displayPanel.add(displayField, "cell 1 0,grow");
+		
 		JPanel commandsPanel = new JPanel();
 		mainPane.add(commandsPanel, "cell 0 1,growx");
 		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[20%][30%][30%][30%,grow]"));
@@ -119,52 +129,75 @@ public class View extends JFrame {
 	}
 
 	private String[] getPlaceHolderNames() {
-		String[] columnNames = { "Word", "Paragraph #", "Sentence #", "Word Context"};
+		String[] columnNames = { "Word", "Frequency"};
 		return columnNames;
 	}
 
 	private Object[][] getPlaceHolderData() {
 		Object[][] data = { 
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"},
-				{ "Jon Doe", 1, 2, "his name was Jone Doe, the killer of"}
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1},
+				{ "Jon Doe", 1}
 		};
 		return data;
 	}
