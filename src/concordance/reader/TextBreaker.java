@@ -19,10 +19,10 @@ import java.util.Locale;
 
 public class TextBreaker {
 	
-	/*
+	/**
 	 * Use the class in default Java library to split a body of text into sentences
 	 * This method failed to ignore special characters within quotation marks and also many other cases.
-	 * @param any body a text. Preferably a singly paragraph.
+	 * @param text any body a text. Preferably a singly paragraph.
 	 * @return a list of sentences from the text
 	 */
 	public static List<String> getSentences(String text) {
@@ -36,9 +36,9 @@ public class TextBreaker {
         return list;
 	}
 	
-	/*
+	/**
 	 * Use the class in default Java library to split a sentence into many words
-	 * @param any sentence type String
+	 * @param text any sentence type String
 	 * @return a list of words lower cased within the given text
 	 */
 	public static List<String> getWords(String text) {
@@ -47,8 +47,8 @@ public class TextBreaker {
 		boundary.setText(text);
         int start = boundary.first();
         for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
-        	String adding = text.substring(start, end);
-        	if (!containsSpecialCharacter(adding)) {
+        	String adding = text.substring(start, end).trim();
+        	if (!containsSpecialCharacter(adding) && !adding.isEmpty()) {
         		list.add(text.substring(start, end).toLowerCase());
         	}
         }
