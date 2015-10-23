@@ -1,77 +1,64 @@
 package concordance.datastructure;
 
 public class WordNode implements WordNodeInterface {
+	
+	private String word;
+	private ContextNode context;
+	private int count;
+	private WordNode left, right;
+	boolean rightThread;
+	
+	public WordNode(String word) {
+		this.word = word;
+		context = new ContextNode();
+	}
 
-	@Override
 	public void setLeft(WordNode node) {
-		// TODO Auto-generated method stub
-		
+		left = node;
 	}
-
-	@Override
+	
 	public WordNode getLeft() {
-		// TODO Auto-generated method stub
-		return null;
+		return left;
 	}
 
-	@Override
 	public void setWord(String s) {
-		// TODO Auto-generated method stub
-		
+		word = s;
 	}
 
-	@Override
 	public String getWord() {
-		// TODO Auto-generated method stub
-		return null;
+		return word;
 	}
 
-	@Override
 	public void setCount(int i) {
-		// TODO Auto-generated method stub
-		
+		count = i;
 	}
 
-	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return count;
 	}
 
-	@Override
 	public void setContextLink(ContextNode s) {
-		// TODO Auto-generated method stub
-		
+		context = s;
 	}
 
-	@Override
 	public ContextNode getContextLink() {
-		// TODO Auto-generated method stub
-		return null;
+		return context;
 	}
 
-	@Override
 	public void setRightLink(WordNode node) {
-		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public WordNode getRightLink() {
-		// TODO Auto-generated method stub
-		return null;
+		return right;
 	}
 
-	@Override
 	public void setRightThread(boolean b) {
-		// TODO Auto-generated method stub
-		
+		rightThread = false;
 	}
 
-	@Override
 	public boolean getRightThread() {
-		// TODO Auto-generated method stub
-		return false;
+		return rightThread;
 	}
 
 }
