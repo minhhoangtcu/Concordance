@@ -21,6 +21,9 @@ public class TextBreaker {
 	
 	/*
 	 * Use the class in default Java library to split a body of text into sentences
+	 * This method failed to ignore special characters within quotation marks and also many other cases.
+	 * @param any body a text. Preferably a singly paragraph.
+	 * @return a list of sentences from the text
 	 */
 	public static List<String> getSentences(String text) {
 		List<String> list = new LinkedList<>();
@@ -36,7 +39,7 @@ public class TextBreaker {
 	/*
 	 * Use the class in default Java library to split a sentence into many words
 	 * @param any sentence type String
-	 * 
+	 * @return a list of words lower cased within the given text
 	 */
 	public static List<String> getWords(String text) {
 		List<String> list = new LinkedList<>();
