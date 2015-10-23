@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import concordance.gui.View;
+import concordance.reader.ConcordanceReader;
 
 public class ControllerLoadConcordance implements ActionListener {
 
@@ -20,7 +21,6 @@ public class ControllerLoadConcordance implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		JFileChooser fc = new JFileChooser();
 		fc.setDialogTitle("Select a text file to build a concordance");
 		
@@ -29,18 +29,12 @@ public class ControllerLoadConcordance implements ActionListener {
 			 File selectedFile = fc.getSelectedFile();
 			    try {
 					BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-					String line = null;
-					while ((line = reader.readLine()) != null) {
-						if (line.trim().equals("")) {
-							System.out.println("-> following is a paragraph break");
-						}
-						System.out.println(line);
-					}
-					reader.close();
+					ConcordanceReader.read(reader);
 			    } catch (FileNotFoundException e1) {
-				} catch (IOException e1) {
+			    	e1.printStackTrace();
+			    } catch (IOException e1) {
+					e1.printStackTrace();
 				}
 		}
 	}
-
 }
