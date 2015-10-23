@@ -1,53 +1,44 @@
 package concordance.datastructure;
 
 public class ContextNode implements ContextNodeInterface {
+	
+	private int pNumber, sNumber;
+	private String context;
+	private ContextNode next;
+	
+	public ContextNode() {
+	}
 
-	@Override
 	public int getParagraphNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return pNumber;
 	}
 
-	@Override
 	public void setParagraphNum(int i) {
-		// TODO Auto-generated method stub
-		
+		pNumber = i;
 	}
 
-	@Override
 	public int getSentenceNum() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sNumber;
 	}
 
-	@Override
 	public void setSentenceNum(int i) {
-		// TODO Auto-generated method stub
-		
+		sNumber = i;
 	}
 
-	@Override
 	public String getContext() {
-		// TODO Auto-generated method stub
-		return null;
+		return context;
 	}
 
-	@Override
 	public void setContext(String s) {
-		// TODO Auto-generated method stub
-		
+		context = s;
 	}
 
-	@Override
 	public ContextNode getNext() {
-		// TODO Auto-generated method stub
-		return null;
+		return next;
 	}
 
-	@Override
 	public void setNext(ContextNode n) {
-		// TODO Auto-generated method stub
-		
+		next = n;
 	}
 
 }
