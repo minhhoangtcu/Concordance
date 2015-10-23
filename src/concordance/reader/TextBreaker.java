@@ -17,15 +17,26 @@ import java.util.Locale;
 //import edu.stanford.nlp.process.PTBTokenizer;
 //import edu.stanford.nlp.process.WordToSentenceProcessor;
 
-public class SentenceBreaker {
+public class TextBreaker {
 	
 	/*
 	 * Use the class in default Java library to split a body of text into sentences
 	 */
-	public static List<String> getSentencesDefault(String text) {
+	public static List<String> getSentences(String text) {
 		List<String> list = new LinkedList<>();
 		BreakIterator boundary = BreakIterator.getSentenceInstance(Locale.US);
         boundary.setText(text);
+        int start = boundary.first();
+        for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
+            list.add(text.substring(start, end));
+        }
+        return list;
+	}
+	
+	public static List<String> getWords(String text) {
+		List<String> list = new LinkedList<>();
+		BreakIterator boundary = BreakIterator.getWordInstance(Locale.US);
+		boundary.setText(text);
         int start = boundary.first();
         for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
             list.add(text.substring(start, end));
