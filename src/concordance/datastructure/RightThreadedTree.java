@@ -49,6 +49,13 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 		}
 	}
 	
+	/**
+	 * Add the second node the left of the first node
+	 * The right link of the inserting node is pointed to its predecessor.
+	 * Since the right link is not really the right node, thread is set to true
+	 * @param node the parent node
+	 * @param addingNode the inserting node
+	 */
 	private void addLeftNode(WordNode node, WordNode addingNode) {
 		//System.out.println(String.format("assigned %s and the left node of %s", addingNode.getWord(), node.getWord()));
 		addingNode.setRightLink(node);
@@ -57,6 +64,13 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 		size++;
 	}
 	
+	/**
+	 * Add the second node to the right of the first node.
+	 * The right link of the inserting node is pointed to its predecessor's successor
+	 * If the first node is pointing to a thread on the right, then inserting node must also point to a thread.
+	 * @param node the parent node
+	 * @param addingNode the inserting node
+	 */
 	private void addRightNode(WordNode node, WordNode addingNode) {
 		//System.out.println(String.format("assigned %s and the right node of %s", addingNode.getWord(), node.getWord()));
 		addingNode.setRightLink(node.getRightLink());
