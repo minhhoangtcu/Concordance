@@ -16,6 +16,8 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	public void put(WordNode node) {
 		if (isEmpty()) {
 			root.setLeftLink(node);
+			node.setRightLink(root);
+			node.setRightThread(true);
 			size++;
 			System.out.println(String.format("assigned %s as the first node", node.getWord()));
 		} else {
@@ -30,26 +32,38 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 					previous = current;
 					current = current.getLeftLink();
 					if (current == null) {
-						System.out.println(String.format("assigned %s and the left node of %s", node.getWord(), previous.getWord()));
-						previous.setLeftLink(node);
-						size++;
+						addLeftNode(previous, node);
 						return;
 					}
 				}
 				else if (compare > 0) {
-					previous = current;
-					current = current.getRightLink();
-					if (current == null) {
-						System.out.println(String.format("assigned %s and the right node of %s", node.getWord(), previous.getWord()));
-						previous.setRightLink(node);
-						size++;
+					if (current.getRightThread()) {
+						addRightNode(current, node);
 						return;
 					}
+					current = current.getRightLink();
 				}
 				else 
 					return;
 			}
 		}
+	}
+	
+	private void addLeftNode(WordNode node, WordNode addingNode) {
+		//System.out.println(String.format("assigned %s and the left node of %s", addingNode.getWord(), node.getWord()));
+		addingNode.setRightLink(node);
+		addingNode.setRightThread(true);
+		node.setLeftLink(addingNode);
+		size++;
+	}
+	
+	private void addRightNode(WordNode node, WordNode addingNode) {
+		//System.out.println(String.format("assigned %s and the right node of %s", addingNode.getWord(), node.getWord()));
+		addingNode.setRightLink(node.getRightLink());
+		addingNode.setRightThread(node.getRightThread());
+		node.setRightLink(addingNode);
+		node.setRightThread(false);
+		size++;
 	}
 	
 	/**
