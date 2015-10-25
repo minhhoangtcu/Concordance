@@ -8,16 +8,19 @@ public class WordNode implements WordNodeInterface {
 	private WordNode left, right;
 	boolean rightThread;
 	
+	public WordNode() {
+	}
+	
 	public WordNode(String word) {
 		this.word = word;
 		context = new ContextNode();
 	}
-
-	public void setLeft(WordNode node) {
+	
+	public void setLeftLink(WordNode node) {
 		left = node;
 	}
 	
-	public WordNode getLeft() {
+	public WordNode getLeftLink() {
 		return left;
 	}
 
@@ -46,7 +49,7 @@ public class WordNode implements WordNodeInterface {
 	}
 
 	public void setRightLink(WordNode node) {
-		
+		right = node;
 	}
 
 	public WordNode getRightLink() {
@@ -54,7 +57,7 @@ public class WordNode implements WordNodeInterface {
 	}
 
 	public void setRightThread(boolean b) {
-		rightThread = false;
+		rightThread = b;
 	}
 
 	public boolean getRightThread() {

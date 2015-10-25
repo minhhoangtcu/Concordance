@@ -1,9 +1,9 @@
 package concordance.datastructure;
 
 public interface WordNodeInterface {
-	public void setLeft(WordNode node);
+	public void setLeftLink(WordNode node);
 
-	public WordNode getLeft();
+	public WordNode getLeftLink();
 
 	public void setWord(String s);
 
