@@ -7,8 +7,7 @@ public class InOrderThreadedTraversal {
 	 * <ul>
 	 * <li>Go to the left most node, <b>u</b>, in the tree. Print out the data from <b>u</b>.
 	 * <li>Go to the inorder successor of <b>u</b>.
-	 * <li>If the node has a right child, inorder successor is the left most node of the right sub tree
-	 * <li>else inorder successor is the closest ancestor, <b>v</b>, of <b>u</b> such that <b>u</b> is descended from the left child of <b>v</b>.
+	 * <li>Print out the result.
 	 * </ul>
 	 * @param the "head" node. The right link of this node should be threaded and point to itself.
 	 */
@@ -21,7 +20,7 @@ public class InOrderThreadedTraversal {
 	}
 	
 	/**
-	 * Give the left-most node in the left sub-tree of the given node
+	 * Get the left-most node in the left sub-tree of the given node
 	 * If there given node is non-exist, the method returns null
 	 * @param node any Node within the tree
 	 * @return left-most node in the left sub-tree of the given node
@@ -38,6 +37,15 @@ public class InOrderThreadedTraversal {
 		}
 	}
 	
+	/**
+	 * Get the inorder successor of a node in a threaded binary tree.
+	 * <u>
+	 * <li>If the node has a right child, inorder successor is the left most node of the right sub tree
+	 * <li>else inorder successor is the closest ancestor, <b>v</b>, of <b>u</b> such that <b>u</b> is descended from the left child of <b>v</b>.
+	 * </u>
+	 * @param node any valid Node within the tree.
+	 * @return the inorder successor of the inputted node
+	 */
 	public static WordNode inOrderSuccessor(WordNode node) {
 		if (!node.rightThread) {
 			return leftMost(node.getRightLink());
