@@ -6,7 +6,7 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	private int size;
 	
 	public RightThreadedTree() {
-		root = new WordNode("head");
+		root = new WordNode("");
 		root.setRightLink(root);
 	}
 	
@@ -99,24 +99,6 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 		}
 	}
 	
-	/**
-	 * Give the left-most node in the left sub-tree of the given node
-	 * If there given node is non-exist, the method returns null
-	 * @param node any Node within the tree
-	 * @return left-most node in the left sub-tree of the given node
-	 */
-	public WordNode leftMost(WordNode node) {
-		if (node == null)
-			return null;
-		else {
-			WordNode current = node;
-			while (current.getLeftLink() != null) {
-				current = current.getLeftLink();
-			}
-			return current;
-		}
-	}
-	
 	public WordNode get(String key) {
 		return null;
 	}
@@ -127,5 +109,18 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	
 	public boolean isEmpty() {
 		return size == 0;
+	}
+
+	/**
+	 * @return the root
+	 */
+	public WordNode getRoot() {
+		return root;
+	}
+
+	@Override
+	public WordNode max() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

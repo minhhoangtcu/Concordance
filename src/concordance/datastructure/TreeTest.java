@@ -12,13 +12,12 @@ public class TreeTest {
 		WordNode thrid = new WordNode("d");
 		WordNode forth = new WordNode("b");
 		WordNode fifth = new WordNode("e");
-//		WordNode sixth = new WordNode("6");
-//		WordNode seventh = new WordNode("7");
 		tree.put(first);
 		tree.put(second);
 		tree.put(thrid);
 		tree.put(forth);
 		tree.put(fifth);
+		InOrderThreadedTraversal.printWordsAlphabetically(tree.getRoot());
 	}
 
 	@Test
@@ -40,6 +39,7 @@ public class TreeTest {
 		tree.put(sixth);
 		tree.put(seventh);
 		tree.put(eaith);
+		InOrderThreadedTraversal.printWordsAlphabetically(tree.getRoot());
 	}
 	
 }

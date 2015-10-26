@@ -6,6 +6,6 @@ public interface ConcordanceTreeInterface {
 	public WordNode get(String key);
 	public void put(WordNode node);
 	public WordNode min();
-	public WordNode leftMost(WordNode node);
+	public WordNode max();
 
 }
