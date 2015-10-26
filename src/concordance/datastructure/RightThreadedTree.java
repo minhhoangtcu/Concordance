@@ -11,10 +11,13 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	}
 	
 	/**
-	 * 
+	 * Put the node into the binary tree.
+	 * @param node the node with provided info about its data
 	 */
 	public void put(WordNode node) {
-		if (isEmpty()) {
+		if (node == null | node.getWord().equals("")) {
+			throw new IllegalArgumentException("The input node is undefined");
+		} else if (isEmpty()) {
 			root.setLeftLink(node);
 			node.setRightLink(root);
 			node.setRightThread(true);
