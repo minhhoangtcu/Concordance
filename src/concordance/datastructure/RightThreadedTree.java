@@ -15,15 +15,14 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	 * Cannot put in a node that already exist in the tree
 	 * @param node the node with provided info about its data
 	 */
-	public void put(WordNode node) {
+	public void put(WordNode node) throws IllegalArgumentException{
 		if (node == null | node.getWord().equals("")) {
 			throw new IllegalArgumentException("The input node is undefined");
 		} else if (isEmpty()) {
 			root.setLeftLink(node);
 			node.setRightLink(root);
 			node.setRightThread(true);
-			size++;
-			System.out.println(String.format("assigned %s as the first node", node.getWord()));
+			size++;			
 		} else {
 			WordNode current = root.getLeftLink();
 			WordNode previous = null;
@@ -55,30 +54,30 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	
 	/**
 	 * Get the node with the provided key in the binary tree
+	 * @param the key of the node in the type of String
+	 * @return the WordNode with the key similar to input key
 	 */
-	public WordNode get(String key) {
+	public WordNode get(String key) throws IllegalArgumentException{
 		if (isEmpty())
 			throw new NullPointerException("Empty tree.");
 		else if (key.equals(""))
 			throw new IllegalArgumentException("The input String is undefined");
 		else {
 			WordNode current = root.getLeftLink();
-			WordNode previous = null;
 			while (true) {
 				String currentKey = current.getWord();
 				int compare = key.compareTo(currentKey);
 				// For compare to > 0. The word appear after the argument word in unicode. Inverse holds true.
 				if (compare < 0) {
-					previous = current;
+					if (current.getLeftLink() == null)
+						//Reached left-most node in the tree.
+						throw new IllegalArgumentException("There is no node in the tree with the provided key");
 					current = current.getLeftLink();
-					if (current == null) {
-						return previous;
-					}
 				}
 				else if (compare > 0) {
-					if (current.getRightThread()) {
-						return current;
-					}
+					if (current.getRightThread())
+						//Reached right-most node in the tree
+						throw new IllegalArgumentException("There is no node in the tree with the provided key");
 					current = current.getRightLink();
 				} else
 					return current;
