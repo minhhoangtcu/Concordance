@@ -12,6 +12,7 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	
 	/**
 	 * Put the node into the binary tree.
+	 * Cannot put in a node that already exist in the tree
 	 * @param node the node with provided info about its data
 	 */
 	public void put(WordNode node) {
@@ -47,7 +48,40 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 					current = current.getRightLink();
 				}
 				else 
-					return;
+					throw new IllegalArgumentException("The node already exist in the list");
+			}
+		}
+	}
+	
+	/**
+	 * Get the node with the provided key in the binary tree
+	 */
+	public WordNode get(String key) {
+		if (isEmpty())
+			throw new NullPointerException("Empty tree.");
+		else if (key.equals(""))
+			throw new IllegalArgumentException("The input String is undefined");
+		else {
+			WordNode current = root.getLeftLink();
+			WordNode previous = null;
+			while (true) {
+				String currentKey = current.getWord();
+				int compare = key.compareTo(currentKey);
+				// For compare to > 0. The word appear after the argument word in unicode. Inverse holds true.
+				if (compare < 0) {
+					previous = current;
+					current = current.getLeftLink();
+					if (current == null) {
+						return previous;
+					}
+				}
+				else if (compare > 0) {
+					if (current.getRightThread()) {
+						return current;
+					}
+					current = current.getRightLink();
+				} else
+					return current;
 			}
 		}
 	}
@@ -99,10 +133,6 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 		}
 	}
 	
-	public WordNode get(String key) {
-		return null;
-	}
-
 	public int size() {
 		return size;
 	}

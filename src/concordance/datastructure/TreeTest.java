@@ -27,7 +27,7 @@ public class TreeTest {
 		WordNode second = new WordNode("y");
 		WordNode thrid = new WordNode("e");
 		WordNode forth = new WordNode("b");
-		WordNode fifth = new WordNode("y");
+		WordNode fifth = new WordNode("z");
 		WordNode sixth = new WordNode("q");
 		WordNode seventh = new WordNode("i");
 		WordNode eaith = new WordNode("s");
