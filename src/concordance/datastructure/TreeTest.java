@@ -25,14 +25,37 @@ public class TreeTest {
 	public void treeAddingTest2() {
 		System.out.println("TREE ADDING TEST 2");
 		RightThreadedTree tree = new RightThreadedTree();
-		WordNode first = new WordNode("a");
-		WordNode second = new WordNode("y");
-		WordNode thrid = new WordNode("e");
-		WordNode forth = new WordNode("b");
-		WordNode fifth = new WordNode("y");
-		WordNode sixth = new WordNode("q");
-		WordNode seventh = new WordNode("i");
-		WordNode eaith = new WordNode("s");
+		WordNode first = new WordNode("a", 1, 3, "a apple");
+		WordNode second = new WordNode("y", 5, 3, "y u no");
+		WordNode thrid = new WordNode("e", 25, 32, "e = mc2");
+		WordNode forth = new WordNode("b", 12, 43, "big botty b");
+		WordNode fifth = new WordNode("y", 17, 33, "yes yes yes y sir");
+		WordNode sixth = new WordNode("q", 11, 63, "q stands for queue");
+		WordNode seventh = new WordNode("i", 12, 33, "i means Minh");
+		WordNode eaith = new WordNode("s", 71, 53, "s s s");
+		tree.put(first);
+		tree.put(second);
+		tree.put(thrid);
+		tree.put(forth);
+		tree.put(fifth);
+		tree.put(sixth);
+		tree.put(seventh);
+		tree.put(eaith);
+		InOrderThreadedTraversal.printWordsAlphabetically(tree.getRoot());
+	}
+	
+	@Test
+	public void treeAddingTest3() {
+		System.out.println("TREE ADDING TEST 3");
+		RightThreadedTree tree = new RightThreadedTree();
+		WordNode first = new WordNode("a", 1, 3, "a apple");
+		WordNode second = new WordNode("a", 1, 3, "a apple2");
+		WordNode thrid = new WordNode("a", 1, 3, "a apple3");
+		WordNode forth = new WordNode("b", 12, 43, "big botty b");
+		WordNode fifth = new WordNode("y", 17, 33, "yes yes yes y sir");
+		WordNode sixth = new WordNode("b", 12, 43, "big botty b2");
+		WordNode seventh = new WordNode("y", 17, 33, "yes yes yes y sir2");
+		WordNode eaith = new WordNode("y", 17, 33, "yes yes yes y sir3");
 		tree.put(first);
 		tree.put(second);
 		tree.put(thrid);
@@ -48,14 +71,14 @@ public class TreeTest {
 	public void treeIteratorTest() {
 		System.out.println("TREE ITERATOR TEST");
 		RightThreadedTree tree = new RightThreadedTree();
-		WordNode first = new WordNode("a");
-		WordNode second = new WordNode("y");
-		WordNode thrid = new WordNode("e");
-		WordNode forth = new WordNode("b");
-		WordNode fifth = new WordNode("y");
-		WordNode sixth = new WordNode("q");
-		WordNode seventh = new WordNode("i");
-		WordNode eaith = new WordNode("s");
+		WordNode first = new WordNode("a", 1, 3, "a apple");
+		WordNode second = new WordNode("y", 5, 3, "y u no");
+		WordNode thrid = new WordNode("e", 25, 32, "e = mc2");
+		WordNode forth = new WordNode("b", 12, 43, "big botty b");
+		WordNode fifth = new WordNode("y", 17, 33, "yes yes yes y sir");
+		WordNode sixth = new WordNode("q", 11, 63, "q stands for queue");
+		WordNode seventh = new WordNode("i", 12, 33, "i means Minh");
+		WordNode eaith = new WordNode("s", 71, 53, "s s s");
 		tree.put(first);
 		tree.put(second);
 		tree.put(thrid);

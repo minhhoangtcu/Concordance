@@ -7,6 +7,13 @@ public class ContextNode implements ContextNodeInterface {
 	private ContextNode next;
 	
 	public ContextNode() {
+		
+	}
+	
+	public ContextNode(int pNumber, int sNumber, String context) {
+		this.pNumber = pNumber;
+		this.sNumber = sNumber;
+		this.context = context;
 	}
 
 	public int getParagraphNum() {

@@ -3,17 +3,34 @@ package concordance.datastructure;
 public class WordNode implements WordNodeInterface {
 	
 	private String word;
-	private ContextNode context;
+	private ContextNode contextNewest;
 	private int count;
 	private WordNode left, right;
 	boolean rightThread;
 	
 	public WordNode() {
+		count = 1;
 	}
 	
 	public WordNode(String word) {
 		this.word = word;
-		context = new ContextNode();
+		count = 1;
+	}
+	
+	public WordNode(String word, int pNumber, int sNumber, String context) {
+		this.word = word;
+		push(pNumber, sNumber, context);
+		count = 1;
+	}
+	
+	public void push(int pNumber, int sNumber, String context) {
+		ContextNode node = new ContextNode(pNumber, sNumber, context);
+		push(node);
+	}
+	
+	public void push(ContextNode node) {
+		node.setNext(contextNewest);
+		contextNewest = node;
 	}
 	
 	public void setLeftLink(WordNode node) {
@@ -35,17 +52,21 @@ public class WordNode implements WordNodeInterface {
 	public void setCount(int i) {
 		count = i;
 	}
+	
+	public void increaseCount() {
+		count++;
+	}
 
 	public int getCount() {
 		return count;
 	}
 
 	public void setContextLink(ContextNode s) {
-		context = s;
+		contextNewest = s;
 	}
 
 	public ContextNode getContextLink() {
-		return context;
+		return contextNewest;
 	}
 
 	public void setRightLink(WordNode node) {
