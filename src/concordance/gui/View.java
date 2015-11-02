@@ -36,6 +36,7 @@ public class View extends JFrame {
 	private JButton btnLoadConcordance;
 	private JPanel displayPanel;
 	private JTextArea displayField;
+	private JButton btnAdvanced;
 
 	/**
 	 * Create the frame.
@@ -101,6 +102,11 @@ public class View extends JFrame {
 		btnRemoveAllCommon = new JButton("Remove All Common Words");
 		btnRemoveAllCommon.setBackground(Color.WHITE);
 		panelButtonsCommon.add(btnRemoveAllCommon);
+		
+		btnAdvanced = new JButton("Show Advanced");
+		btnAdvanced.setForeground(Color.RED);
+		btnAdvanced.setBackground(Color.WHITE);
+		panelButtonsCommon.add(btnAdvanced);
 
 		JLabel lblBeginWord = new JLabel("Find words begin with:");
 		commandsPanel.add(lblBeginWord, "cell 1 2,alignx trailing");
@@ -189,5 +195,8 @@ public class View extends JFrame {
 	 */
 	public void setTable(JTable table) {
 		this.table = table;
+	}
+	public JButton getBtnAdvanced() {
+		return btnAdvanced;
 	}
 }
