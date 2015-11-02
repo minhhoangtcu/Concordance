@@ -18,8 +18,10 @@ public class ReaderTest {
 		System.out.println("TEST CONCORDANCE READER WITH FILTER WORDS"); System.out.println();
 		BufferedReader fReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
 		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
+		FilterWordsReader filterReader = new FilterWordsReader();
+		HashMap<String, Boolean> map = filterReader.read(fReader);
 		ConcordanceReader concorReader = new ConcordanceReader();
-		RightThreadedTree tree = concorReader.read(cReader, fReader);
+		RightThreadedTree tree = concorReader.read(cReader, map);
 		for (WordNode word: tree) {
 			System.out.println("**********************");
 			System.out.println(word.getWord());

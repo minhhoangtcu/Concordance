@@ -18,17 +18,12 @@ public class ConcordanceReader {
 	 * @param cReader a buffered reader reading from any text file 
 	 * @throws IOException something happened with the file
 	 */
-	public RightThreadedTree read(BufferedReader cReader, BufferedReader fReader) throws IOException {
+	public RightThreadedTree read(BufferedReader cReader, HashMap<String, Boolean> map) throws IOException {
 		String line = null;
 		StringBuilder builder = new StringBuilder();
 		RightThreadedTree tree = new RightThreadedTree();
 		
-		HashMap<String, Boolean> map = null;
-		if (fReader != null)
-			map = new FilterWordsReader().read(fReader);
-		
 		int atParagraph = 1;
-		
 		while ((line = cReader.readLine()) != null) {
 			if (!isEndOfParagraph(line)) {
 				builder.append(line + " "); //We need to include a space at the end of every line
