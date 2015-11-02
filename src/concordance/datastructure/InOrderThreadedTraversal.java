@@ -2,6 +2,17 @@ package concordance.datastructure;
 
 public class InOrderThreadedTraversal {
 	
+	public static void printEverythingAlphabetically(WordNode head) {
+		WordNode current = leftMost(head);
+		while (current != null) {
+			System.out.print("EIO: " + current.getWord());
+			for (ContextNode cN: current) {
+				System.out.println("\t" + cN.toString());
+			}
+			current = inOrderSuccessor(current);
+		}
+	}
+	
 	/**
 	 * <p>Print all words from the given "head" node of a right threaded tree to console.
 	 * <ul>
@@ -14,7 +25,7 @@ public class InOrderThreadedTraversal {
 	public static void printWordsAlphabetically(WordNode head) {
 		WordNode current = leftMost(head);
 		while (current != null) {
-			System.out.println("InOrderThreadedTraversal: " + current.getWord());
+			System.out.println("WIO: " + current.getWord());
 			current = inOrderSuccessor(current);
 		}
 	}

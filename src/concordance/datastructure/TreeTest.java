@@ -64,7 +64,7 @@ public class TreeTest {
 		tree.put(sixth);
 		tree.put(seventh);
 		tree.put(eaith);
-		InOrderThreadedTraversal.printWordsAlphabetically(tree.getRoot());
+		InOrderThreadedTraversal.printEverythingAlphabetically(tree.getRoot());
 	}
 	
 	@Test

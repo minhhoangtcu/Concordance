@@ -1,6 +1,8 @@
 package concordance.datastructure;
 
-public class WordNode implements WordNodeInterface {
+import java.util.Iterator;
+
+public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 	
 	private String word;
 	private ContextNode contextNewest;
@@ -83,6 +85,30 @@ public class WordNode implements WordNodeInterface {
 
 	public boolean getRightThread() {
 		return rightThread;
+	}
+
+	@Override
+	public Iterator<ContextNode> iterator() {
+		return new ContextIterator();
+	}
+	
+	private class ContextIterator implements Iterator<ContextNode>{
+
+		private ContextNode current = contextNewest;
+		private ContextNode previous = null;
+		
+		@Override
+		public boolean hasNext() {
+			return (current != null);
+		}
+
+		@Override
+		public ContextNode next() {
+			previous = current;
+			current = current.getNext();
+			return previous;
+		}
+		
 	}
 
 }

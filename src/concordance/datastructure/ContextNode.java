@@ -48,4 +48,8 @@ public class ContextNode implements ContextNodeInterface {
 		next = n;
 	}
 
+	public String toString() {
+		return String.format("p#: %d\ts#: %d\tContext: %s", pNumber, sNumber, context);
+	}
+	
 }
