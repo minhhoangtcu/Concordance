@@ -3,18 +3,24 @@ package concordance.gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import concordance.ConcordanceApplication;
+import concordance.gui.models.ConcordanceTableModel;
 import net.miginfocom.swing.MigLayout;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JTextArea;
+import java.awt.Font;
 
 public class View extends JFrame {
 
+	private ConcordanceApplication main;
 	private JPanel mainPane;
 	private JTable table;
 	private JTextField txtKeyword;
@@ -34,7 +40,8 @@ public class View extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public View() {
+	public View(ConcordanceApplication main) {
+		this.main = main;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		mainPane = new JPanel();
@@ -44,33 +51,32 @@ public class View extends JFrame {
 		setTitle("Concordance Application - Minh Hoang");
 
 		/*
-		 * Table (top) section
+		 * Top section (output)
 		 */
-
-		/*
-		 * Commands (input, bottom) section
-		 */
-		
 		displayPanel = new JPanel();
 		mainPane.add(displayPanel, "cell 0 0,grow");
 		displayPanel.setLayout(new MigLayout("", "[20%][80%,grow]", "[100%,grow]"));
 		
+		displayField = new JTextArea();
+		displayPanel.add(displayField, "cell 1 0,grow");
+		
 		JScrollPane scrollPane = new JScrollPane();
 		displayPanel.add(scrollPane, "cell 0 0,grow");
-		
-		table = new JTable(getPlaceHolderData(), getPlaceHolderNames());
+		table = new JTable(50, 2);
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table.getColumnModel().getColumn(1).setPreferredWidth(20);
 		scrollPane.setViewportView(table);
 		
-		displayField = new JTextArea();
-		displayPanel.add(displayField, "cell 1 0,grow");
-		
+		/*
+		 * Commands (input, bottom) section
+		 */
 		JPanel commandsPanel = new JPanel();
 		mainPane.add(commandsPanel, "cell 0 1,growx");
 		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[20%][30%][30%][30%,grow]"));
 
 		lblFeedback = new JLabel("Feedback");
+		lblFeedback.setForeground(Color.RED);
+		lblFeedback.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		commandsPanel.add(lblFeedback, "cell 1 0 4 1,alignx center,aligny center");
 
 		JLabel lblKeyword = new JLabel("Find Keyword:");
@@ -128,80 +134,6 @@ public class View extends JFrame {
 		panelButtonsDisplay.add(btnGetBiggest);
 	}
 
-	private String[] getPlaceHolderNames() {
-		String[] columnNames = { "Word", "Frequency"};
-		return columnNames;
-	}
-
-	private Object[][] getPlaceHolderData() {
-		Object[][] data = { 
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1},
-				{ "Jon Doe", 1}
-		};
-		return data;
-	}
-
 	public JButton getBtnGetSmallest() {
 		return btnGetSmallest;
 	}
@@ -243,5 +175,19 @@ public class View extends JFrame {
 	}
 	public JButton getBtnLoadConcordance() {
 		return btnLoadConcordance;
+	}
+
+	/**
+	 * @return the table
+	 */
+	public JTable getTable() {
+		return table;
+	}
+
+	/**
+	 * @param table the table to set
+	 */
+	public void setTable(JTable table) {
+		this.table = table;
 	}
 }

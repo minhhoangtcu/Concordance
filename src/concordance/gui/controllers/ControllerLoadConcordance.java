@@ -42,6 +42,8 @@ public class ControllerLoadConcordance implements ActionListener {
 						tree = concorReader.read(reader, null);
 					model.setTree(tree);
 					view.setLblFeedback("Loaded concordance.");
+					model.initList();
+					view.getTable().setModel(model.initTableModel());
 			    } catch (FileNotFoundException e1) {
 			    	e1.printStackTrace();
 			    } catch (IOException e1) {

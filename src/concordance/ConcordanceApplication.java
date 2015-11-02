@@ -13,11 +13,33 @@ import concordance.gui.View;
  */
 public class ConcordanceApplication {
 	
+	private Model model;
+	private View view;
+	private Control control;
+	
 	public static void main(String[] args) {
-		Model model = new Model();
-		View view = new View();
-		Control control = new Control(view, model);
+		ConcordanceApplication app = new ConcordanceApplication();
+	}
+	
+	public ConcordanceApplication() {
+		model = new Model();
+		view = new View(this);
+		control = new Control(view, model);
 		view.setVisible(true);
+	}
+
+	/**
+	 * @return the model
+	 */
+	public Model getModel() {
+		return model;
+	}
+
+	/**
+	 * @param model the model to set
+	 */
+	public void setModel(Model model) {
+		this.model = model;
 	}
 
 }
