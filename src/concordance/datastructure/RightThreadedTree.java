@@ -59,6 +59,39 @@ public class RightThreadedTree implements ConcordanceTreeInterface, Iterable<Wor
 	}
 	
 	/**
+	 * Get the node with the provided key in the binary tree
+	 * @param the key of the node in the type of String
+	 * @return the WordNode with the key similar to input key
+	 */
+	public WordNode get(String key) throws IllegalArgumentException{
+		if (isEmpty())
+			throw new NullPointerException("Empty tree.");
+		else if (key.equals(""))
+			throw new IllegalArgumentException("The input String is undefined");
+		else {
+			WordNode current = root.getLeftLink();
+			while (true) {
+				String currentKey = current.getWord();
+				int compare = key.compareTo(currentKey);
+				// For compare to > 0. The word appear after the argument word in unicode. Inverse holds true.
+				if (compare < 0) {
+					if (current.getLeftLink() == null)
+						//Reached left-most node in the tree.
+						throw new IllegalArgumentException("There is no node in the tree with the provided key");
+					current = current.getLeftLink();
+				}
+				else if (compare > 0) {
+					if (current.getRightThread())
+						//Reached right-most node in the tree
+						throw new IllegalArgumentException("There is no node in the tree with the provided key");
+					current = current.getRightLink();
+				} else
+					return current;
+			}
+		}
+	}
+	
+	/**
 	 * Add the second node the left of the first node
 	 * The right link of the inserting node is pointed to its predecessor.
 	 * Since the right link is not really the right node, thread is set to true
@@ -105,10 +138,6 @@ public class RightThreadedTree implements ConcordanceTreeInterface, Iterable<Wor
 		}
 	}
 	
-	public WordNode get(String key) {
-		return null;
-	}
-
 	public int size() {
 		return size;
 	}
