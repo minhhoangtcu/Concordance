@@ -7,19 +7,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.swing.JFileChooser;
 
-import concordance.datastructure.RightThreadedTree;
 import concordance.gui.Model;
 import concordance.gui.View;
-import concordance.reader.ConcordanceReader;
+import concordance.reader.FilterWordsReader;
 
-public class ControllerLoadConcordance implements ActionListener {
+public class ControllerLoadFilter implements ActionListener {
 
 	View view;
 	Model model;
 	
-	public ControllerLoadConcordance(View view, Model model) {
+	public ControllerLoadFilter(View view, Model model) {
 		this.view = view;
 		this.model = model;
 	}
@@ -27,21 +28,17 @@ public class ControllerLoadConcordance implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
-		fc.setDialogTitle("Select a text file to build a concordance");
+		fc.setDialogTitle("Select a file with common words to build a filter");
 		
 		int returnVal = fc.showOpenDialog(view);
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
 			 File selectedFile = fc.getSelectedFile();
 			    try {
 					BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-					ConcordanceReader concorReader = new ConcordanceReader();
-					RightThreadedTree tree;
-					if (model.getFilterMap() != null)
-						tree = concorReader.read(reader, model.getFilterMap());
-					else
-						tree = concorReader.read(reader, null);
-					model.setTree(tree);
-					view.setLblFeedback("Loaded concordance.");
+					FilterWordsReader filterReader = new FilterWordsReader();
+					HashMap<String, Boolean> map = filterReader.read(reader);
+					model.setFilterMap(map);
+					view.setLblFeedback("Loaded filter words.");
 			    } catch (FileNotFoundException e1) {
 			    	e1.printStackTrace();
 			    } catch (IOException e1) {
@@ -49,4 +46,5 @@ public class ControllerLoadConcordance implements ActionListener {
 				}
 		}
 	}
+
 }

@@ -49,7 +49,7 @@ public class RightThreadedTree implements ConcordanceTreeInterface, Iterable<Wor
 					current = current.getRightLink();
 				}
 				else {
-					System.out.println("Found similar node");
+//					System.out.println("Found similar node");
 					current.push(node.getContextLink()); // Put the context for the new node into our old one.
 					current.increaseCount();
 					return;
