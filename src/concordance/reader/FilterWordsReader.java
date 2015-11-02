@@ -19,7 +19,7 @@ public class FilterWordsReader {
 		String line = reader.readLine(); //Read the first line (Rank and Word)
 		HashMap<String, Boolean> map = new HashMap<>();
 		while ((line = reader.readLine()) != null) {
-			String word = line.split("\t")[1];
+			String word = line.split("\t")[1].toLowerCase();
 			if (!map.containsKey(word)) {
 				map.put(word, true);
 			}

@@ -2,6 +2,7 @@ package concordance.reader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import concordance.datastructure.RightThreadedTree;
 import concordance.datastructure.WordNode;
@@ -14,17 +15,21 @@ public class ConcordanceReader {
 	/**
 	 * Take a buffered reader, analyze the text and construct Words Node and add to the data structure
 	 * This method will execute with an assumption that error from the reader will not occur.
-	 * @param reader a buffered reader reading from any text file 
+	 * @param cReader a buffered reader reading from any text file 
 	 * @throws IOException something happened with the file
 	 */
-	public RightThreadedTree read(BufferedReader reader) throws IOException {
+	public RightThreadedTree read(BufferedReader cReader, BufferedReader fReader) throws IOException {
 		String line = null;
 		StringBuilder builder = new StringBuilder();
 		RightThreadedTree tree = new RightThreadedTree();
 		
+		HashMap<String, Boolean> map = null;
+		if (fReader != null)
+			map = new FilterWordsReader().read(fReader);
+		
 		int atParagraph = 1;
 		
-		while ((line = reader.readLine()) != null) {
+		while ((line = cReader.readLine()) != null) {
 			if (!isEndOfParagraph(line)) {
 				builder.append(line + " "); //We need to include a space at the end of every line
 			} else {
@@ -34,17 +39,27 @@ public class ConcordanceReader {
 				for (String sen: sentences) {
 					List<String> words = TextBreaker.getWords(sen);
 					for (String w: words) {
-						System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
-						WordNode node = new WordNode(w);
-						node.push(atParagraph, atSentence, sen);
-						tree.put(node);
+						if (map != null) {
+							if (!map.containsKey(w)) {
+//								System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
+								WordNode node = new WordNode(w);
+								node.push(atParagraph, atSentence, sen);
+								tree.put(node);
+							}
+						}
+						else {
+//							System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
+							WordNode node = new WordNode(w);
+							node.push(atParagraph, atSentence, sen);
+							tree.put(node);
+						}
 					}
 					atSentence++;
 				}
 				atParagraph++;
 			}
 		}
-		reader.close();
+		cReader.close();
 		return tree;
 	}
 

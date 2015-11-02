@@ -1,6 +1,7 @@
 package concordance.reader;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,6 +14,21 @@ import concordance.datastructure.WordNode;
 public class ReaderTest {
 	
 	@Test
+	public void testConcorWithFilter() throws IOException {
+		System.out.println("TEST CONCORDANCE READER WITH FILTER WORDS"); System.out.println();
+		BufferedReader fReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
+		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
+		ConcordanceReader concorReader = new ConcordanceReader();
+		RightThreadedTree tree = concorReader.read(cReader, fReader);
+		for (WordNode word: tree) {
+			System.out.println("**********************");
+			System.out.println(word.getWord());
+			System.out.println(word.toString());
+		}
+		System.out.println("**********************************************");
+	}
+	
+//	@Test
 	public void testFilterReader() throws IOException {
 		System.out.println("TEST FILTER WORDS READER"); System.out.println();
 		FilterWordsReader fReader = new FilterWordsReader();
@@ -28,7 +44,7 @@ public class ReaderTest {
 		System.out.println("TEST CONCORDANCE READER"); System.out.println();
 		ConcordanceReader cReader = new ConcordanceReader();
 		BufferedReader bReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
-		RightThreadedTree tree = cReader.read(bReader);
+		RightThreadedTree tree = cReader.read(bReader, null);
 		for (WordNode word: tree) {
 			System.out.println("**********************");
 			System.out.println(word.getWord());
