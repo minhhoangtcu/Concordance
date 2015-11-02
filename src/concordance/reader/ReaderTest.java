@@ -3,6 +3,7 @@ package concordance.reader;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 
 import org.junit.Test;
 
@@ -12,8 +13,19 @@ import concordance.datastructure.WordNode;
 public class ReaderTest {
 	
 	@Test
-	public void testReader() throws IOException {
-		System.out.println("TEST READER"); System.out.println();
+	public void testFilterReader() throws IOException {
+		System.out.println("TEST FILTER WORDS READER"); System.out.println();
+		FilterWordsReader fReader = new FilterWordsReader();
+		BufferedReader bReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
+		HashMap<String, Boolean> map = fReader.read(bReader);
+		for (String key: map.keySet()) {
+			System.out.println(key);
+		}
+	}
+	
+//	@Test
+	public void testConcorReader() throws IOException {
+		System.out.println("TEST CONCORDANCE READER"); System.out.println();
 		ConcordanceReader cReader = new ConcordanceReader();
 		BufferedReader bReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
 		RightThreadedTree tree = cReader.read(bReader);
@@ -25,7 +37,7 @@ public class ReaderTest {
 		System.out.println("**********************************************");
 	}
 
-	@Test
+//	@Test
 	public void testSentenceBreakerDefault() {
 		System.out.println("DEFAULT"); System.out.println();
 		String text = "Alice was beginning to get very tired of sitting by her sister on the bank,"
@@ -51,7 +63,7 @@ public class ReaderTest {
 		for (String sentence: TextBreaker.getSentences(text)) System.out.println(sentence);
 	}
 	
-	@Test
+//	@Test
 	public void testWordBreaker() {
 		System.out.println(); System.out.println();
 		String text = "Mr. Utterson the lawyer was a man of a rugged countenance that was never"
