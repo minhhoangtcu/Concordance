@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
 
+import concordance.datastructure.ContextNode;
+import concordance.datastructure.RightThreadedTree;
+import concordance.datastructure.WordNode;
+
 public class ConcordanceReader {
 	
 	public ConcordanceReader() {
@@ -15,9 +19,10 @@ public class ConcordanceReader {
 	 * @param reader a buffered reader reading from any text file 
 	 * @throws IOException something happened with the file
 	 */
-	public void read(BufferedReader reader) throws IOException {
+	public RightThreadedTree read(BufferedReader reader) throws IOException {
 		String line = null;
 		StringBuilder builder = new StringBuilder();
+		RightThreadedTree tree = new RightThreadedTree();
 		
 		int atParagraph = 1;
 		
@@ -31,7 +36,10 @@ public class ConcordanceReader {
 				for (String sen: sentences) {
 					List<String> words = TextBreaker.getWords(sen);
 					for (String w: words) {
-						System.out.println(String.format("Word %s \ts#: %d \tp#: %d", w, atSentence, atParagraph));
+						System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
+						WordNode node = new WordNode(w);
+						node.push(atParagraph, atSentence, sen);
+						tree.put(node);
 					}
 					atSentence++;
 				}
@@ -39,6 +47,7 @@ public class ConcordanceReader {
 			}
 		}
 		reader.close();
+		return tree;
 	}
 
 	/**

@@ -1,8 +1,29 @@
 package concordance.reader;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.junit.Test;
 
+import concordance.datastructure.RightThreadedTree;
+import concordance.datastructure.WordNode;
+
 public class ReaderTest {
+	
+	@Test
+	public void testReader() throws IOException {
+		System.out.println("TEST READER"); System.out.println();
+		ConcordanceReader cReader = new ConcordanceReader();
+		BufferedReader bReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
+		RightThreadedTree tree = cReader.read(bReader);
+		for (WordNode word: tree) {
+			System.out.println("**********************");
+			System.out.println(word.getWord());
+			System.out.println(word.toString());
+		}
+		System.out.println("**********************************************");
+	}
 
 	@Test
 	public void testSentenceBreakerDefault() {

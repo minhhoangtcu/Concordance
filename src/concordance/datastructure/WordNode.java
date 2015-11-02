@@ -86,6 +86,14 @@ public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 	public boolean getRightThread() {
 		return rightThread;
 	}
+	
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		for (ContextNode cN: this) {
+			builder.append("\t" + cN.toString() + "\n");
+		}
+		return builder.toString();
+	}
 
 	@Override
 	public Iterator<ContextNode> iterator() {
@@ -110,5 +118,4 @@ public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 		}
 		
 	}
-
 }
