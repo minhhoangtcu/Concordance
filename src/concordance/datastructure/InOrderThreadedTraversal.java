@@ -14,7 +14,7 @@ public class InOrderThreadedTraversal {
 	public static void printWordsAlphabetically(WordNode head) {
 		WordNode current = leftMost(head);
 		while (current != null) {
-			System.out.println(current.getWord());
+			System.out.println("InOrderThreadedTraversal: " + current.getWord());
 			current = inOrderSuccessor(current);
 		}
 	}

@@ -1,6 +1,8 @@
 package concordance.datastructure;
 
-public class RightThreadedTree implements ConcordanceTreeInterface {
+import java.util.Iterator;
+
+public class RightThreadedTree implements ConcordanceTreeInterface, Iterable<WordNode> {
 	
 	private WordNode root;
 	private int size;
@@ -22,7 +24,7 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 			node.setRightLink(root);
 			node.setRightThread(true);
 			size++;
-			System.out.println(String.format("assigned %s as the first node", node.getWord()));
+//			System.out.println(String.format("assigned %s as the first node", node.getWord()));
 		} else {
 			WordNode current = root.getLeftLink();
 			WordNode previous = null;
@@ -122,5 +124,29 @@ public class RightThreadedTree implements ConcordanceTreeInterface {
 	public WordNode max() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Iterator<WordNode> iterator() {
+		return new RightThreadedTreeInorderIterable();
+	}
+	
+	private class RightThreadedTreeInorderIterable implements Iterator<WordNode>{
+		
+		private WordNode current = InOrderThreadedTraversal.leftMost(root);
+		private WordNode previous = root;
+
+		@Override
+		public boolean hasNext() {
+			return (current != null);
+		}
+
+		@Override
+		public WordNode next() {
+			previous = current;
+			current = InOrderThreadedTraversal.inOrderSuccessor(current);
+			return previous;
+		}
+		
 	}
 }
