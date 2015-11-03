@@ -2,17 +2,18 @@ package concordance.gui.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import concordance.datastructure.ContextNode;
+import java.util.Stack;
+import concordance.datastructure.FrequencyMap;
 import concordance.datastructure.WordNode;
 import concordance.gui.Model;
 import concordance.gui.View;
 
-public class ControllerDisplayAll implements ActionListener {
+public class ControllerDisplaySmallest implements ActionListener {
 	
 	View view;
 	Model model;
 
-	public ControllerDisplayAll(View view, Model model) {
+	public ControllerDisplaySmallest(View view, Model model) {
 		this.view = view;
 		this.model = model;
 	}
@@ -20,8 +21,13 @@ public class ControllerDisplayAll implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (model.isInitialized()) {
+			FrequencyMap map = model.initSortedMap();
+			int min = map.getMin();
+			Stack<WordNode> smallestStack = map.getMap().get(min);
 			StringBuilder builder = new StringBuilder();
-			for (WordNode word: model.getTree()) {
+			builder.append("<h1 style='text-align: center; margin: 0px'> Least Occurrences </h1>");
+			builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Frequency: %d <p>", min));
+			for (WordNode word: smallestStack) {
 				builder.append(DisplayHelper.getWordAndContent(word));
 			}
 			view.setDisplayField(builder.toString());
@@ -30,5 +36,7 @@ public class ControllerDisplayAll implements ActionListener {
 		else {
 			view.setLblFeedback("Please load a concordance first!");
 		}
+		
 	}
+
 }

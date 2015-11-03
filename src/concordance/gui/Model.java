@@ -1,19 +1,22 @@
 package concordance.gui;
 
 import java.util.HashMap;
+import concordance.datastructure.FrequencyMap;
 import concordance.datastructure.RightThreadedTree;
 import concordance.datastructure.WordNode;
 import concordance.gui.models.ConcordanceTableModel;
 
 public class Model {
 	
-	HashMap<String, Boolean> filterMap;
-	RightThreadedTree tree;
-	WordNode[] wordNodes;
-	ConcordanceTableModel tableModel;
+	private HashMap<String, Boolean> filterMap;
+	private RightThreadedTree tree;
+	private WordNode[] wordNodes;
+	private ConcordanceTableModel tableModel;
+	private FrequencyMap sortedMap;
+	private boolean isInitialized;
 	
 	public Model() {
-		
+		isInitialized = false;
 	}
 	
 	/**
@@ -28,15 +31,30 @@ public class Model {
 	}
 	
 	/**
+	 * Create a map with key corresponding to the frequency
+	 * @return a frequency map
+	 */
+	public FrequencyMap initSortedMap() {
+		if (isInitialized) {
+			sortedMap = new FrequencyMap(tree);
+			return sortedMap;
+		}
+		else
+			return null;
+	}
+	
+	/**
 	 * The model that the table use. See more in the class <b>ConcordanceTableModel
 	 * @return the model used by the table
 	 */
 	public ConcordanceTableModel initTableModel() {
-		if (wordNodes == null) {
-			return null;
+		if (isInitialized) {
+			initList();
+			tableModel = new ConcordanceTableModel(this);
+			return tableModel;
 		}
-		tableModel = new ConcordanceTableModel(this);
-		return tableModel;
+		else
+			return null;
 	}
 	
 	/**
@@ -46,16 +64,17 @@ public class Model {
 	 * @return an array of words extracted from the tree
 	 */
 	public WordNode[] initList() {
-		if (tree == null) {
+		if (isInitialized) {
+			wordNodes = new WordNode[tree.size()];
+			int i = 0;
+			for (WordNode word: tree) {
+				wordNodes[i] = word;
+				i++;
+			}
+			return wordNodes;
+		}
+		else
 			return null;
-		}
-		wordNodes = new WordNode[tree.size()];
-		int i = 0;
-		for (WordNode word: tree) {
-			wordNodes[i] = word;
-			i++;
-		}
-		return wordNodes;
 	}
 	
 	
@@ -85,6 +104,7 @@ public class Model {
 	 */
 	public void setTree(RightThreadedTree tree) {
 		this.tree = tree;
+		isInitialized = true;
 	}
 
 	/**
@@ -95,26 +115,22 @@ public class Model {
 	}
 
 	/**
-	 * @param wordNodes the wordNodes to set
-	 */
-	public void setWordNodes(WordNode[] wordNodes) {
-		this.wordNodes = wordNodes;
-	}
-
-
-
-	/**
 	 * @return the tableModel
 	 */
 	public ConcordanceTableModel getTableModel() {
 		return tableModel;
 	}
-
+	
 	/**
-	 * @param tableModel the tableModel to set
+	 * @return the sortedMap
 	 */
-	public void setTableModel(ConcordanceTableModel tableModel) {
-		this.tableModel = tableModel;
+	public FrequencyMap getSortedMap() {
+		return sortedMap;
 	}
 
+
+
+	public boolean isInitialized() {
+		return isInitialized;
+	}
 }
