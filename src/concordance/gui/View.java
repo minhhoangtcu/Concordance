@@ -13,6 +13,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.ListSelectionModel;
+
 import java.awt.GridLayout;
 import java.awt.Color;
 import javax.swing.JTextArea;
@@ -35,7 +38,7 @@ public class View extends JFrame {
 	private JLabel lblFeedback;
 	private JButton btnLoadConcordance;
 	private JPanel displayPanel;
-	private JTextArea displayField;
+	private JTextPane displayField;
 	private JButton btnAdvanced;
 
 	/**
@@ -58,14 +61,17 @@ public class View extends JFrame {
 		mainPane.add(displayPanel, "cell 0 0,grow");
 		displayPanel.setLayout(new MigLayout("", "[20%][80%,grow]", "[100%,grow]"));
 		
-		displayField = new JTextArea();
-		displayPanel.add(displayField, "cell 1 0,grow");
+		displayField = new JTextPane();
+		displayField.setContentType("text/html");
+		JScrollPane scrollPaneDisplay = new JScrollPane(displayField);
+		displayPanel.add(scrollPaneDisplay, "cell 1 0,grow");
 		
 		JScrollPane scrollPane = new JScrollPane();
 		displayPanel.add(scrollPane, "cell 0 0,grow");
 		table = new JTable(50, 2);
 		table.getColumnModel().getColumn(0).setPreferredWidth(100);
 		table.getColumnModel().getColumn(1).setPreferredWidth(20);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION );
 		scrollPane.setViewportView(table);
 		
 		/*
@@ -198,5 +204,12 @@ public class View extends JFrame {
 	}
 	public JButton getBtnAdvanced() {
 		return btnAdvanced;
+	}
+
+	/**
+	 * @param displayField the displayField to set
+	 */
+	public void setDisplayField(String text) {
+		displayField.setText(text);
 	}
 }

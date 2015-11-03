@@ -42,4 +42,32 @@ public class ConcordanceApplication {
 		this.model = model;
 	}
 
+	/**
+	 * @return the view
+	 */
+	public View getView() {
+		return view;
+	}
+
+	/**
+	 * @param view the view to set
+	 */
+	public void setView(View view) {
+		this.view = view;
+	}
+
+	/**
+	 * @return the control
+	 */
+	public Control getControl() {
+		return control;
+	}
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Control control) {
+		this.control = control;
+	}
+
 }

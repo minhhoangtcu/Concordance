@@ -16,6 +16,15 @@ public class Model {
 		
 	}
 	
+	public String displayWord(String word) {
+		WordNode node = tree.get(word);
+		return node.toString();
+	}
+	
+	/**
+	 * The model that the table use. See more in the class <b>ConcordanceTableModel
+	 * @return the model used by the table
+	 */
 	public ConcordanceTableModel initTableModel() {
 		if (wordNodes == null) {
 			return null;
@@ -24,6 +33,11 @@ public class Model {
 		return tableModel;
 	}
 	
+	/**
+	 * Because the program use a list for human-interaction. Thus, selection for word is random.
+	 * Storing all words in an array is most optimal.
+	 * @return an array of words extracted from the tree
+	 */
 	public WordNode[] initList() {
 		if (tree == null) {
 			return null;

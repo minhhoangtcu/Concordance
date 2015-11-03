@@ -49,7 +49,11 @@ public class ContextNode implements ContextNodeInterface {
 	}
 
 	public String toString() {
-		return String.format("p#: %d\ts#: %d\tContext: %s", pNumber, sNumber, context);
+		StringBuilder builder = new StringBuilder();
+		builder.append("<b>Paragraph number:</b> \t" + pNumber + "<br>");
+		builder.append("<b>Sentence number:</b> \t" + sNumber + "<br>");
+		builder.append("<b>Context:</b> " + context + "<br>");
+		return builder.toString();
 	}
 	
 }
