@@ -23,7 +23,7 @@ public class ControllerDisplayAll implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		WordNode head = model.getTree().getRoot();
-		String text = InOrderThreadedTraversal.printEverythingAlphabeticallyTo(head);
+		String text = InOrderThreadedTraversal.getEverythingAlphabetically(head);
 		view.setDisplayField(text);
 		view.setDisplayFieldViewToTop();
 	}

@@ -2,7 +2,12 @@ package concordance.datastructure;
 
 public class InOrderThreadedTraversal {
 	
-	public static String printEverythingAlphabeticallyTo(WordNode head) {
+	/**
+	 * TODO: Remove this method
+	 * @param head
+	 * @return
+	 */
+	public static String getEverythingAlphabetically(WordNode head) {
 		WordNode current = leftMost(head);
 		StringBuilder builder = new StringBuilder();
 		while (current != null) {
