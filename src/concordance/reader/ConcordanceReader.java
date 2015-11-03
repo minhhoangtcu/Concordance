@@ -34,9 +34,6 @@ public class ConcordanceReader {
 				for (String sen: sentences) {
 					List<String> words = TextBreaker.getWords(sen);
 					for (String w: words) {
-						if (w.equals("weak")) {
-							System.out.println("read end");
-						}
 						if (map != null) {
 							if (!map.containsKey(w)) {
 //								System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
