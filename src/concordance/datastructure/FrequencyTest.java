@@ -19,8 +19,8 @@ public class FrequencyTest {
 		HashMap<String, Boolean> map = FilterWordsReader.read(fReader);
 		RightThreadedTree tree = ConcordanceReader.read(cReader, map);
 		
-		FrequencyMap freqMap = new FrequencyMap();
-		HashMap<Integer, Stack<WordNode>> fMap = freqMap.getMap(tree);
+		FrequencyMap freqMap = new FrequencyMap(tree);
+		HashMap<Integer, Stack<WordNode>> fMap = freqMap.getMap();
 		for (int i = 0; i <= freqMap.getMax(); i++) {
 			if (fMap.containsKey(i)) {
 				for (WordNode word: fMap.get(i)) {

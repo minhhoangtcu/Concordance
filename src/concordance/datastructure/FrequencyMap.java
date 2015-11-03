@@ -5,8 +5,29 @@ import java.util.Stack;
 
 public class FrequencyMap {
 	
-	int max;
-	int min;
+	private int max, min;
+	private HashMap<Integer, Stack<WordNode>> sortedMap;
+	
+	/**
+	 * Sort the words from a tree and put them into a map.
+	 * This support fast getting an insertion and getting.
+	 */
+	public FrequencyMap(RightThreadedTree tree) {
+		sortedMap = new HashMap<>(7);
+		for (WordNode word: tree) {
+			int freq = word.getCount();
+			if (!sortedMap.containsKey(freq)) {
+				Stack<WordNode> temp = new Stack<>();
+				temp.push(word);
+				sortedMap.put(freq, temp);
+			}
+			else {
+				sortedMap.get(freq).push(word);
+			}
+		}
+		initMax(sortedMap);
+		initMin(sortedMap);
+	}
 	
 	/**
 	 * Sort the words from a tree and put them into a map.
@@ -14,22 +35,8 @@ public class FrequencyMap {
 	 * @param tree RightThreadTree
 	 * @return a map with key as the frequency that map to a stack contains all words with that frequency
 	 */
-	public HashMap<Integer, Stack<WordNode>> getMap(RightThreadedTree tree) {
-		HashMap<Integer, Stack<WordNode>> map = new HashMap<>(7);
-		for (WordNode word: tree) {
-			int freq = word.getCount();
-			if (!map.containsKey(freq)) {
-				Stack<WordNode> temp = new Stack<>();
-				temp.push(word);
-				map.put(freq, temp);
-			}
-			else {
-				map.get(freq).push(word);
-			}
-		}
-		initMax(map);
-		initMin(map);
-		return map;
+	public HashMap<Integer, Stack<WordNode>> getMap() {
+		return sortedMap;
 	}
 
 	public int getMax() {
