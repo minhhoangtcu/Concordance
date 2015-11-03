@@ -3,25 +3,6 @@ package concordance.datastructure;
 public class InOrderThreadedTraversal {
 	
 	/**
-	 * TODO: Remove this method
-	 * @param head
-	 * @return
-	 */
-	public static String getEverythingAlphabetically(WordNode head) {
-		WordNode current = leftMost(head);
-		StringBuilder builder = new StringBuilder();
-		while (current != null) {
-			builder.append("<h2 style='font-family: Serif; color: navy'>" + current.getWord() + "</h2>");
-			for (ContextNode cN : current) {
-				builder.append(cN.toString() + "<br>");
-			}
-			builder.append("<br>");
-			current = inOrderSuccessor(current);
-		}
-		return builder.toString();
-	}
-	
-	/**
 	 * <p>Print all words and their context to the console.<br>
 	 * <b>This method is used for testing purposes
 	 * @param head the "head" node. 
