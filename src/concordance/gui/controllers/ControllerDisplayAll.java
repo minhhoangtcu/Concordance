@@ -2,9 +2,6 @@ package concordance.gui.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JTextPane;
-
 import concordance.datastructure.InOrderThreadedTraversal;
 import concordance.datastructure.WordNode;
 import concordance.gui.Model;

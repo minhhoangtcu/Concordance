@@ -5,6 +5,7 @@ import javax.swing.table.AbstractTableModel;
 import concordance.datastructure.WordNode;
 import concordance.gui.Model;
 
+@SuppressWarnings("serial")
 public class ConcordanceTableModel extends AbstractTableModel {
 
 	Model model;

@@ -35,8 +35,7 @@ public class ControllerLoadFilter implements ActionListener {
 			 File selectedFile = fc.getSelectedFile();
 			    try {
 					BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-					FilterWordsReader filterReader = new FilterWordsReader();
-					HashMap<String, Boolean> map = filterReader.read(reader);
+					HashMap<String, Boolean> map = FilterWordsReader.read(reader);
 					model.setFilterMap(map);
 					view.setLblFeedback("Loaded filter words.");
 			    } catch (FileNotFoundException e1) {

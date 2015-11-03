@@ -19,10 +19,8 @@ public class ConcordanceTest {
 		BufferedReader fReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
 		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
 		
-		FilterWordsReader filterReader = new FilterWordsReader();
-		HashMap<String, Boolean> map = filterReader.read(fReader);
-		ConcordanceReader concorReader = new ConcordanceReader();
-		RightThreadedTree tree = concorReader.read(cReader, map);
+		HashMap<String, Boolean> map = FilterWordsReader.read(fReader);
+		RightThreadedTree tree = ConcordanceReader.read(cReader, map);
 		
 		app.getModel().setFilterMap(map);
 		app.getModel().setTree(tree);

@@ -34,12 +34,11 @@ public class ControllerLoadConcordance implements ActionListener {
 			 File selectedFile = fc.getSelectedFile();
 			    try {
 					BufferedReader reader = new BufferedReader(new FileReader(selectedFile));
-					ConcordanceReader concorReader = new ConcordanceReader();
 					RightThreadedTree tree;
 					if (model.getFilterMap() != null)
-						tree = concorReader.read(reader, model.getFilterMap());
+						tree = ConcordanceReader.read(reader, model.getFilterMap());
 					else
-						tree = concorReader.read(reader, null);
+						tree = ConcordanceReader.read(reader, null);
 					model.setTree(tree);
 					view.setLblFeedback("Loaded concordance.");
 					model.initList();

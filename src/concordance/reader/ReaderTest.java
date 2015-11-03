@@ -1,7 +1,6 @@
 package concordance.reader;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
@@ -18,10 +17,8 @@ public class ReaderTest {
 		System.out.println("TEST CONCORDANCE READER WITH FILTER WORDS"); System.out.println();
 		BufferedReader fReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
 		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
-		FilterWordsReader filterReader = new FilterWordsReader();
-		HashMap<String, Boolean> map = filterReader.read(fReader);
-		ConcordanceReader concorReader = new ConcordanceReader();
-		RightThreadedTree tree = concorReader.read(cReader, map);
+		HashMap<String, Boolean> map = FilterWordsReader.read(fReader);
+		RightThreadedTree tree = ConcordanceReader.read(cReader, map);
 		for (WordNode word: tree) {
 			System.out.println("**********************");
 			System.out.println(word.getWord());
@@ -33,9 +30,8 @@ public class ReaderTest {
 //	@Test
 	public void testFilterReader() throws IOException {
 		System.out.println("TEST FILTER WORDS READER"); System.out.println();
-		FilterWordsReader fReader = new FilterWordsReader();
 		BufferedReader bReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
-		HashMap<String, Boolean> map = fReader.read(bReader);
+		HashMap<String, Boolean> map = FilterWordsReader.read(bReader);
 		for (String key: map.keySet()) {
 			System.out.println(key);
 		}
@@ -44,9 +40,8 @@ public class ReaderTest {
 //	@Test
 	public void testConcorReader() throws IOException {
 		System.out.println("TEST CONCORDANCE READER"); System.out.println();
-		ConcordanceReader cReader = new ConcordanceReader();
 		BufferedReader bReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
-		RightThreadedTree tree = cReader.read(bReader, null);
+		RightThreadedTree tree = ConcordanceReader.read(bReader, null);
 		for (WordNode word: tree) {
 			System.out.println("**********************");
 			System.out.println(word.getWord());

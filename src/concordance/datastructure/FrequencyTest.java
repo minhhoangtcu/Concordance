@@ -16,16 +16,14 @@ public class FrequencyTest {
 		BufferedReader fReader = new BufferedReader(new FileReader("MostCommonWords.txt"));
 		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
 		
-		FilterWordsReader filterReader = new FilterWordsReader();
-		HashMap<String, Boolean> map = filterReader.read(fReader);
-		ConcordanceReader concorReader = new ConcordanceReader();
-		RightThreadedTree tree = concorReader.read(cReader, map);
+		HashMap<String, Boolean> map = FilterWordsReader.read(fReader);
+		RightThreadedTree tree = ConcordanceReader.read(cReader, null);
 		
 		HashMap<Integer, Stack<WordNode>> freqMap = FrequencyMap.getMap(tree);
 		int i = 1;
 		while (freqMap.containsKey(i)) {
 			for (WordNode word: freqMap.get(i)) {
-				System.out.println(word.getCount() + "\t" +word.toString());
+				System.out.println(word.getCount() + "\t" + word.getWord() + "\t" +word.toString());
 			}
 			i++;
 		}

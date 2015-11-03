@@ -9,16 +9,13 @@ import concordance.datastructure.WordNode;
 
 public class ConcordanceReader {
 	
-	public ConcordanceReader() {
-	}
-	
 	/**
 	 * Take a buffered reader, analyze the text and construct Words Node and add to the data structure
 	 * This method will execute with an assumption that error from the reader will not occur.
 	 * @param cReader a buffered reader reading from any text file 
 	 * @throws IOException something happened with the file
 	 */
-	public RightThreadedTree read(BufferedReader cReader, HashMap<String, Boolean> map) throws IOException {
+	public static RightThreadedTree read(BufferedReader cReader, HashMap<String, Boolean> map) throws IOException {
 		String line = null;
 		StringBuilder builder = new StringBuilder();
 		RightThreadedTree tree = new RightThreadedTree();
