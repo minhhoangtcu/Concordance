@@ -17,15 +17,16 @@ public class FrequencyTest {
 		BufferedReader cReader = new BufferedReader(new FileReader("AChristmasCarol.txt"));
 		
 		HashMap<String, Boolean> map = FilterWordsReader.read(fReader);
-		RightThreadedTree tree = ConcordanceReader.read(cReader, null);
+		RightThreadedTree tree = ConcordanceReader.read(cReader, map);
 		
 		HashMap<Integer, Stack<WordNode>> freqMap = FrequencyMap.getMap(tree);
-		int i = 1;
-		while (freqMap.containsKey(i)) {
-			for (WordNode word: freqMap.get(i)) {
-				System.out.println(word.getCount() + "\t" + word.getWord() + "\t" +word.toString());
+		for (int i = 0; i <= FrequencyMap.getMaxFreq(freqMap); i++) {
+			if (freqMap.containsKey(i)) {
+				for (WordNode word: freqMap.get(i)) {
+					System.out.println(word.getCount() + "\t" + word.getWord());
+//					System.out.println(word.getCount() + "\t" + word.getWord() + "\t" +word.toString());
+				}
 			}
-			i++;
 		}
 		
 		try {
