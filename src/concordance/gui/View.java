@@ -170,12 +170,12 @@ public class View extends JFrame {
 		return btnSearchBeginWord;
 	}
 
-	public JTextField getTxtKeyword() {
-		return txtKeyword;
+	public String getTxtKeyword() {
+		return txtKeyword.getText();
 	}
 
-	public JTextField getTxtBeginWord() {
-		return txtBeginWord;
+	public String getTxtBeginWord() {
+		return txtBeginWord.getText();
 	}
 
 	public void setLblFeedback(String text) {

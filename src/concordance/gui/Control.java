@@ -1,5 +1,6 @@
 package concordance.gui;
 
+import concordance.datastructure.ControllerFindKeyWord;
 import concordance.gui.controllers.ControllerDisplayAll;
 import concordance.gui.controllers.ControllerDisplayBiggest;
 import concordance.gui.controllers.ControllerDisplaySmallest;
@@ -22,6 +23,7 @@ public class Control {
 		ControllerDisplayAll ctlDisplayAll = new ControllerDisplayAll(view, model);
 		ControllerDisplayBiggest ctlDisplayBiggest = new ControllerDisplayBiggest(view, model);
 		ControllerDisplaySmallest ctlDisplaySmallest = new ControllerDisplaySmallest(view, model);
+		ControllerFindKeyWord ctrFindKeyWord = new ControllerFindKeyWord(view, model);
 		
 		view.getBtnLoadConcordance().addActionListener(ctlLoadCon);
 		view.getBtnLoadCommonWords().addActionListener(ctlLoadFilter);
@@ -29,6 +31,7 @@ public class Control {
 		view.getBtnDisplayAll().addActionListener(ctlDisplayAll);
 		view.getBtnGetBiggest().addActionListener(ctlDisplayBiggest);
 		view.getBtnGetSmallest().addActionListener(ctlDisplaySmallest);
+		view.getBtnSearchKeyword().addActionListener(ctrFindKeyWord);
 	}
 
 }
