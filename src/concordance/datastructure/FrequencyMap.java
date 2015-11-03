@@ -28,7 +28,7 @@ public class FrequencyMap {
 	}
 
 	public static int getMaxFreq(HashMap<Integer, Stack<WordNode>> freqMap) {
-		int max = 0;
+		int max = 1; // if the map is not empty, we always have a word with at least 1 occurrence
 		for (int j: freqMap.keySet().toArray(new Integer[freqMap.keySet().size()])) {
 			if (max < j)
 				max = j;
@@ -36,4 +36,12 @@ public class FrequencyMap {
 		return max;
 	}
 	
+	public static int getMinFreq(HashMap<Integer, Stack<WordNode>> freqMap) {
+		int min = getMaxFreq(freqMap); // work our way back, because min can be 2 or even 3.
+		for (int j: freqMap.keySet().toArray(new Integer[freqMap.keySet().size()])) {
+			if (min > j)
+				min = j;
+		}
+		return min;
+	}
 }
