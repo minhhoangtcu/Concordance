@@ -2,6 +2,25 @@ package concordance.datastructure;
 
 public class InOrderThreadedTraversal {
 	
+	public static String printEverythingAlphabeticallyTo(WordNode head) {
+		WordNode current = leftMost(head);
+		StringBuilder builder = new StringBuilder();
+		while (current != null) {
+			builder.append("<h2 style='font-family: Serif; color: navy'>" + current.getWord() + "</h2>");
+			for (ContextNode cN : current) {
+				builder.append(cN.toString() + "<br>");
+			}
+			builder.append("<br>");
+			current = inOrderSuccessor(current);
+		}
+		return builder.toString();
+	}
+	
+	/**
+	 * <p>Print all words and their context to the console.<br>
+	 * <b>This method is used for testing purposes
+	 * @param head the "head" node. 
+	 */
 	public static void printEverythingAlphabetically(WordNode head) {
 		WordNode current = leftMost(head);
 		while (current != null) {
@@ -20,7 +39,8 @@ public class InOrderThreadedTraversal {
 	 * <li>Go to the inorder successor of <b>u</b>.
 	 * <li>Print out the result.
 	 * </ul>
-	 * @param the "head" node. The right link of this node should be threaded and point to itself.
+	 * <b>This method is used for testing purposes
+	 * @param head the "head" node. The right link of this node should be threaded and point to itself.
 	 */
 	public static void printWordsAlphabetically(WordNode head) {
 		WordNode current = leftMost(head);

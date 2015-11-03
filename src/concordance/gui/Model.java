@@ -16,9 +16,15 @@ public class Model {
 		
 	}
 	
+	/**
+	 * Finding a word is best used with the get method in tree datastructure
+	 * This ensure O(nlogn) searching time.
+	 * @param word the word that we want to display
+	 * @return the contexture information of input word 
+	 */
 	public String displayWord(String word) {
 		WordNode node = tree.get(word);
-		return node.toString();
+		return "<html>" + node.toString() + "</html>";
 	}
 	
 	/**
@@ -36,6 +42,7 @@ public class Model {
 	/**
 	 * Because the program use a list for human-interaction. Thus, selection for word is random.
 	 * Storing all words in an array is most optimal.
+	 * This ensure O(1) time and O(n) space
 	 * @return an array of words extracted from the tree
 	 */
 	public WordNode[] initList() {
