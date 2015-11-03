@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 
 import concordance.ConcordanceApplication;
 import net.miginfocom.swing.MigLayout;
+import javax.swing.SwingConstants;
 
 public class View extends JFrame {
 
@@ -28,7 +29,6 @@ public class View extends JFrame {
 	private JButton btnDisplayAll;
 	private JButton btnGetBiggest;
 	private JButton btnLoadCommonWords;
-	private JButton btnRemoveAllCommon;
 	private JButton btnSearchKeyword;
 	private JButton btnSearchBeginWord;
 	private JLabel lblFeedback;
@@ -36,6 +36,7 @@ public class View extends JFrame {
 	private JPanel displayPanel;
 	private JTextPane displayField;
 	private JButton btnAdvanced;
+	private JLabel lblCommonFile;
 
 	/**
 	 * Create the frame.
@@ -75,12 +76,13 @@ public class View extends JFrame {
 		 */
 		JPanel commandsPanel = new JPanel();
 		mainPane.add(commandsPanel, "cell 0 1,growx");
-		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[20%][30%][30%][30%,grow]"));
+		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[25%][25%][25%][25%]"));
 
 		lblFeedback = new JLabel("Feedback");
+		lblFeedback.setVisible(false);
 		lblFeedback.setForeground(Color.RED);
 		lblFeedback.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		commandsPanel.add(lblFeedback, "cell 1 0 4 1,alignx center,aligny center");
+		commandsPanel.add(lblFeedback, "cell 1 0 3 1,alignx center,aligny center");
 
 		JLabel lblKeyword = new JLabel("Find Keyword:");
 		commandsPanel.add(lblKeyword, "cell 1 1,alignx trailing");
@@ -94,16 +96,18 @@ public class View extends JFrame {
 		commandsPanel.add(btnSearchKeyword, "cell 3 1,alignx left,aligny top");
 
 		JPanel panelButtonsCommon = new JPanel();
-		commandsPanel.add(panelButtonsCommon, "cell 4 1 1 3,grow");
-		panelButtonsCommon.setLayout(new GridLayout(3, 0, 0, 0));
+		commandsPanel.add(panelButtonsCommon, "cell 4 0 1 4,grow");
+		panelButtonsCommon.setLayout(new GridLayout(4, 0, 0, 0));
+		
+		lblCommonFile = new JLabel("common file");
+		lblCommonFile.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblCommonFile.setVisible(false);
+		lblCommonFile.setHorizontalAlignment(SwingConstants.CENTER);
+		panelButtonsCommon.add(lblCommonFile);
 
 		btnLoadCommonWords = new JButton("Load Common Words");
 		btnLoadCommonWords.setBackground(Color.WHITE);
 		panelButtonsCommon.add(btnLoadCommonWords);
-
-		btnRemoveAllCommon = new JButton("Remove All Common Words");
-		btnRemoveAllCommon.setBackground(Color.WHITE);
-		panelButtonsCommon.add(btnRemoveAllCommon);
 		
 		btnAdvanced = new JButton("Show Advanced");
 		btnAdvanced.setForeground(Color.RED);
@@ -179,8 +183,15 @@ public class View extends JFrame {
 	}
 
 	public void setLblFeedback(String text) {
+		lblFeedback.setVisible(true);
 		lblFeedback.setText(text);
 	}
+	
+	public void clearLblFeedback() {
+		lblFeedback.setVisible(false);
+		lblFeedback.setText("");
+	}
+	
 	public JButton getBtnLoadConcordance() {
 		return btnLoadConcordance;
 	}
@@ -211,5 +222,14 @@ public class View extends JFrame {
 	
 	public void setDisplayFieldViewToTop() {
 		displayField.setCaretPosition(0);
+	}
+	public void setLblCommonFile(String text) {
+		lblCommonFile.setVisible(true);
+		lblCommonFile.setText(text);
+	}
+	
+	public void clearLblCommonFIle() {
+		lblCommonFile.setVisible(false);
+		lblCommonFile.setText("");
 	}
 }

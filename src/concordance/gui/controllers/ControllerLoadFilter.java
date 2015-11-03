@@ -38,6 +38,7 @@ public class ControllerLoadFilter implements ActionListener {
 					HashMap<String, Boolean> map = FilterWordsReader.read(reader);
 					model.setFilterMap(map);
 					view.setLblFeedback("Loaded filter words.");
+					view.setLblCommonFile(selectedFile.getName());
 			    } catch (FileNotFoundException e1) {
 			    	e1.printStackTrace();
 			    } catch (IOException e1) {
