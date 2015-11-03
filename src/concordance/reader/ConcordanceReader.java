@@ -22,18 +22,24 @@ public class ConcordanceReader {
 		String line = null;
 		StringBuilder builder = new StringBuilder();
 		RightThreadedTree tree = new RightThreadedTree();
+		boolean isDone = false;
 		
 		int atParagraph = 1;
-		while ((line = cReader.readLine()) != null) {
+		// As long as there is still line to read or the builder still has words inside (isDone == false).
+		while ((line = cReader.readLine()) != null | !isDone) {
 			if (!isEndOfParagraph(line)) {
 				builder.append(line + " "); //We need to include a space at the end of every line
+				isDone = false;
 			} else {
 				List<String> sentences = TextBreaker.getSentences(builder.toString());
-				builder.setLength(0);
+				builder.setLength(0); isDone = true;
 				int atSentence = 1;
 				for (String sen: sentences) {
 					List<String> words = TextBreaker.getWords(sen);
 					for (String w: words) {
+						if (w.equals("weak")) {
+							System.out.println("read end");
+						}
 						if (map != null) {
 							if (!map.containsKey(w)) {
 //								System.out.println(String.format("Added word %s \ts#: %d \tp#: %d\tcontext: %s", w, atSentence, atParagraph, sen));
@@ -65,6 +71,7 @@ public class ConcordanceReader {
 	 * @return a boolean that determines if the input is a paragraph breaker
 	 */
 	private static boolean isEndOfParagraph(String input) {
-		return input.trim().equals("");
+		if (input == null) return true;
+		else return input.trim().equals("");
 	}
 }
