@@ -162,10 +162,6 @@ public class View extends JFrame {
 		return btnLoadCommonWords;
 	}
 
-	public JButton getBtnRemoveAllCommon() {
-		return btnRemoveAllCommon;
-	}
-
 	public JButton getBtnSearchKeyword() {
 		return btnSearchKeyword;
 	}
