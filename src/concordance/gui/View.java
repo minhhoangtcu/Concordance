@@ -211,4 +211,8 @@ public class View extends JFrame {
 	public void setDisplayField(String text) {
 		displayField.setText(text);
 	}
+	
+	public void setDisplayFieldViewToTop() {
+		displayField.setCaretPosition(0);
+	}
 }

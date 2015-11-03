@@ -25,6 +25,7 @@ public class ControllerDisplayAll implements ActionListener {
 		WordNode head = model.getTree().getRoot();
 		String text = InOrderThreadedTraversal.printEverythingAlphabeticallyTo(head);
 		view.setDisplayField(text);
+		view.setDisplayFieldViewToTop();
 	}
 	
 }
