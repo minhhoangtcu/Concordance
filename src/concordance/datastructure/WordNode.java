@@ -87,6 +87,9 @@ public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 		return rightThread;
 	}
 	
+	/**
+	 * <p>Return an html form of all of the word's context.<br>
+	 */
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<html>");
