@@ -20,12 +20,15 @@ public class ControllerDisplayAll implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (model.isInitialized()) {
+			long startTime = System.currentTimeMillis();
 			StringBuilder builder = new StringBuilder();
 			for (WordNode word: model.getTree()) {
 				builder.append(DisplayHelper.getWordAndContent(word));
 			}
 			view.setDisplayField(builder.toString());
 			view.setDisplayFieldViewToTop();
+			view.setLblFeedback("Displaying all words takes: " + (System.currentTimeMillis()-startTime) + " (ms)");
+			System.out.println("Displaying all words takes: " + (System.currentTimeMillis()-startTime) + " (ms)");
 		}
 		else {
 			view.setLblFeedback("Please load a concordance first!");

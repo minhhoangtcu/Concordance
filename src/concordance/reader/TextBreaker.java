@@ -49,7 +49,7 @@ public class TextBreaker {
         for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
         	String adding = text.substring(start, end).trim();
         	if (!containsSpecialCharacter(adding) && !adding.isEmpty()) {
-        		list.add(text.substring(start, end).toLowerCase());
+        		list.add(text.substring(start, end).replaceAll("[^a-zA-Z ]", "").toLowerCase());
         	}
         }
         return list;
