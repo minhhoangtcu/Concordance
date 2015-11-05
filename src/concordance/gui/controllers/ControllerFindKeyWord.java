@@ -1,11 +1,11 @@
-package concordance.datastructure;
+package concordance.gui.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import concordance.datastructure.WordNode;
 import concordance.gui.Model;
 import concordance.gui.View;
-import concordance.gui.controllers.DisplayHelper;
 
 public class ControllerFindKeyWord implements ActionListener {
 
@@ -23,8 +23,14 @@ public class ControllerFindKeyWord implements ActionListener {
 			String key = view.getTxtKeyword();
 			try {
 				WordNode word = model.getTree().get(key);
-				view.setDisplayFieldHTML(DisplayHelper.getWordAndContentHTML(word));
-				view.setDisplayFieldViewToTop();
+				if (model.isSimple()) {
+					view.setDisplayFieldSimple(DisplayHelper.getWordAndContentSimple(word));
+					view.setSimpleDisplayViewToTop();
+				}
+				else {
+					view.setDisplayFieldHTML(DisplayHelper.getWordAndContentHTML(word));
+					view.setDisplayFieldViewToTop();
+				}
 			}
 			catch (IllegalArgumentException error) {
 				view.setLblFeedback(error.getMessage());

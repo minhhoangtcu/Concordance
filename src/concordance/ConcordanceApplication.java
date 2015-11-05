@@ -10,6 +10,7 @@ import concordance.gui.View;
  * Purpose: This program create an alphabetical list of the words
  *  (especially the important ones) present in a text, usually with citations of the passages concerned.
  *  
+ * Refer to the user manual for more information
  */
 public class ConcordanceApplication {
 	

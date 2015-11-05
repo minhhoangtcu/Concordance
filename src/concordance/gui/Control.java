@@ -1,10 +1,10 @@
 package concordance.gui;
 
-import concordance.datastructure.ControllerFindKeyWord;
 import concordance.gui.controllers.ControllerAdvance;
 import concordance.gui.controllers.ControllerDisplayAll;
 import concordance.gui.controllers.ControllerDisplayBiggest;
 import concordance.gui.controllers.ControllerDisplaySmallest;
+import concordance.gui.controllers.ControllerFindKeyWord;
 import concordance.gui.controllers.ControllerFindWordsBeginWith;
 import concordance.gui.controllers.ControllerList;
 import concordance.gui.controllers.ControllerLoadConcordance;
