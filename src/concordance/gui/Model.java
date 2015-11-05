@@ -142,9 +142,6 @@ public class Model {
 		return isSimple;
 	}
 
-	/**
-	 * @param isSimple the isSimple to set
-	 */
 	public void flipSimple() {
 		isSimple = !isSimple;
 	}
