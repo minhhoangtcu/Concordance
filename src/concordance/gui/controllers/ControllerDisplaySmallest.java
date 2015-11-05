@@ -28,9 +28,9 @@ public class ControllerDisplaySmallest implements ActionListener {
 			builder.append("<h1 style='text-align: center; margin: 0px'> Least Occurrences </h1>");
 			builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Frequency: %d <p>", min));
 			for (WordNode word: smallestStack) {
-				builder.append(DisplayHelper.getWordAndContent(word));
+				builder.append(DisplayHelper.getWordAndContentHTML(word));
 			}
-			view.setDisplayField(builder.toString());
+			view.setDisplayFieldHTML(builder.toString());
 			view.setDisplayFieldViewToTop();
 		}
 		else {

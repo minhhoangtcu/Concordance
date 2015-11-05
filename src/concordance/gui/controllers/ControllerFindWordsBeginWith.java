@@ -30,14 +30,14 @@ public class ControllerFindWordsBeginWith implements ActionListener {
 			if (length <= currentWordLength) {
 				String currentStartWith = word.getWord().substring(0, length);
 				if (currentStartWith.equals(begin)) {
-					builder.append(DisplayHelper.getWordAndContent(word));
+					builder.append(DisplayHelper.getWordAndContentHTML(word));
 					isFound = true;
 				}
 			}
 		}
 		
 		if (isFound) {
-			view.setDisplayField(builder.toString());
+			view.setDisplayFieldHTML(builder.toString());
 			view.setDisplayFieldViewToTop();
 			view.clearLblFeedback();
 		}

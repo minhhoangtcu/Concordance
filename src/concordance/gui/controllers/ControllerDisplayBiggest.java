@@ -29,9 +29,9 @@ public class ControllerDisplayBiggest implements ActionListener {
 			builder.append("<h1 style='text-align: center; margin: 0px'> Most Occurrences </h1>");
 			builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Frequency: %d <p>", max));
 			for (WordNode word: biggestStack) {
-				builder.append(DisplayHelper.getWordAndContent(word));
+				builder.append(DisplayHelper.getWordAndContentHTML(word));
 			}
-			view.setDisplayField(builder.toString());
+			view.setDisplayFieldHTML(builder.toString());
 			view.setDisplayFieldViewToTop();
 		}
 		else {

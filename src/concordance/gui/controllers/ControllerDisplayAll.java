@@ -24,9 +24,9 @@ public class ControllerDisplayAll implements ActionListener {
 			builder.append("<h1 style='text-align: center; margin: 0px'> All Words </h1>");
 			builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Aphabetically <p>"));
 			for (WordNode word: model.getTree()) {
-				builder.append(DisplayHelper.getWordAndContent(word));
+				builder.append(DisplayHelper.getWordAndContentHTML(word));
 			}
-			view.setDisplayField(builder.toString());
+			view.setDisplayFieldHTML(builder.toString());
 			view.setDisplayFieldViewToTop();
 			view.setLblFeedback("Displaying all words takes: " + (System.currentTimeMillis()-startTime) + " (ms)");
 //			System.out.println("Displaying all words takes: " + (System.currentTimeMillis()-startTime) + " (ms)");

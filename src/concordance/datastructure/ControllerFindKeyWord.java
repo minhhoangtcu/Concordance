@@ -23,7 +23,7 @@ public class ControllerFindKeyWord implements ActionListener {
 			String key = view.getTxtKeyword();
 			try {
 				WordNode word = model.getTree().get(key);
-				view.setDisplayField(DisplayHelper.getWordAndContent(word));
+				view.setDisplayFieldHTML(DisplayHelper.getWordAndContentHTML(word));
 				view.setDisplayFieldViewToTop();
 			}
 			catch (IllegalArgumentException error) {

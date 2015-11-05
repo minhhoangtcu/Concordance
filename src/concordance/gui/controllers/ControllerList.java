@@ -20,7 +20,14 @@ public class ControllerList implements MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		int row = view.getTable().getSelectedRow();
 		String word = (String) view.getTable().getValueAt(row, 0);
-		view.setDisplayField(DisplayHelper.getWordAndContent(model.getWord(word)));
+		if (model.isSimple()) {
+			view.setDisplayFieldSimple(DisplayHelper.getWorkAndContentSimple(model.getWord(word)));
+			view.setSimpleDisplayViewToTop();
+		}
+		else { 
+			view.setDisplayFieldHTML(DisplayHelper.getWordAndContentHTML(model.getWord(word)));
+			view.setDisplayFieldViewToTop();
+		}
 	}
 
 	@Override

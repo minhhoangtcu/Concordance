@@ -35,7 +35,6 @@ public class View extends JFrame {
 	private JButton btnSearchBeginWord;
 	private JLabel lblFeedback;
 	private JButton btnLoadConcordance;
-	private JPanel displayPanel;
 	private JTextPane displayField;
 	private JButton btnAdvanced;
 	private JLabel lblCommonFile;
@@ -62,7 +61,7 @@ public class View extends JFrame {
 		/*
 		 * Top section (output)
 		 */
-		displayPanel = new JPanel();
+		JPanel displayPanel = new JPanel();
 		mainPane.add(displayPanel, "cell 0 0,grow");
 		displayPanel.setLayout(new MigLayout("", "[20%][80%,grow]", "[100%,grow]"));
 		
@@ -190,12 +189,12 @@ public class View extends JFrame {
 		lblFeedback.setVisible(true);
 		lblFeedback.setText(text);
 	}
-	
+
 	public void clearLblFeedback() {
 		lblFeedback.setVisible(false);
 		lblFeedback.setText("");
 	}
-	
+
 	public JButton getBtnLoadConcordance() {
 		return btnLoadConcordance;
 	}
@@ -208,38 +207,47 @@ public class View extends JFrame {
 	}
 
 	/**
-	 * @param table the table to set
+	 * @param table
+	 *            the table to set
 	 */
 	public void setTable(JTable table) {
 		this.table = table;
 	}
+
 	public JButton getBtnAdvanced() {
 		return btnAdvanced;
 	}
-	
+
 	public void setBtnAdvancedText(String text) {
 		btnAdvanced.setText(text);
 	}
 
-	/**
-	 * @param displayField the displayField to set
-	 */
-	public void setDisplayField(String text) {
+	public void setDisplayFieldHTML(String text) {
 		displayField.setText(text);
 	}
-	
+
+	public void setDisplayFieldSimple(String text) {
+		simpleTextArea.setText(text);
+	}
+
 	public void setDisplayFieldViewToTop() {
 		displayField.setCaretPosition(0);
 	}
+	
+	public void setSimpleDisplayViewToTop() {
+		simpleTextArea.setCaretPosition(0);
+	}
+	
 	public void setLblCommonFile(String text) {
 		lblCommonFile.setVisible(true);
 		lblCommonFile.setText(text);
 	}
-	
+
 	public void clearLblCommonFIle() {
 		lblCommonFile.setVisible(false);
 		lblCommonFile.setText("");
 	}
+
 	public JPanel getCommandsPanel() {
 		return commandsPanel;
 	}
@@ -252,17 +260,11 @@ public class View extends JFrame {
 	}
 
 	/**
-	 * @param advancedPanel the advancedPanel to set
+	 * @param advancedPanel
+	 *            the advancedPanel to set
 	 */
 	public void setAdvancedPanel(ViewAdvanced advancedPanel) {
 		this.advancedPanel = advancedPanel;
-	}
-
-	/**
-	 * @return the displayPanel
-	 */
-	public JPanel getDisplayPanel() {
-		return displayPanel;
 	}
 
 	/**
@@ -280,10 +282,18 @@ public class View extends JFrame {
 	}
 
 	/**
-	 * @param simpleTextArea the simpleTextArea to set
+	 * @param simpleTextArea
+	 *            the simpleTextArea to set
 	 */
 	public void setSimpleTextArea(JTextArea simpleTextArea) {
 		this.simpleTextArea = simpleTextArea;
 	}
-	
+
+	/**
+	 * @return the displayField
+	 */
+	public JTextPane getDisplayField() {
+		return displayField;
+	}
+
 }
