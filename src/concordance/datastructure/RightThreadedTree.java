@@ -155,7 +155,6 @@ public class RightThreadedTree implements ConcordanceTreeInterface, Iterable<Wor
 
 	@Override
 	public WordNode max() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

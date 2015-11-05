@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
-
 import org.junit.Test;
-
 import concordance.datastructure.RightThreadedTree;
 import concordance.reader.ConcordanceReader;
 import concordance.reader.FilterWordsReader;
@@ -25,6 +23,7 @@ public class ConcordanceTest {
 		app.getModel().setFilterMap(map);
 		app.getModel().setTree(tree);
 		app.getView().setLblFeedback("Loaded concordance.");
+		app.getView().setLblCommonFile("MostCommonWords.txt");
 		app.getModel().initList();
 		app.getView().getTable().setModel(app.getModel().initTableModel());
 		
