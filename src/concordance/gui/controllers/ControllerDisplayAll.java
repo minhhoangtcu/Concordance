@@ -2,7 +2,6 @@ package concordance.gui.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import concordance.datastructure.ContextNode;
 import concordance.datastructure.WordNode;
 import concordance.gui.Model;
 import concordance.gui.View;

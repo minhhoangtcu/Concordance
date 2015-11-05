@@ -123,6 +123,5 @@ public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 			current = current.getNext();
 			return previous;
 		}
-		
 	}
 }

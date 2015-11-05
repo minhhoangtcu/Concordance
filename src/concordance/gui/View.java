@@ -37,11 +37,14 @@ public class View extends JFrame {
 	private JTextPane displayField;
 	private JButton btnAdvanced;
 	private JLabel lblCommonFile;
+	private JPanel commandsPanel;
+	private ViewAdvanced advancedPanel;
 
 	/**
 	 * Create the frame.
 	 */
 	public View(ConcordanceApplication main) {
+		advancedPanel = null;
 		this.main = main;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
@@ -74,9 +77,9 @@ public class View extends JFrame {
 		/*
 		 * Commands (input, bottom) section
 		 */
-		JPanel commandsPanel = new JPanel();
+		commandsPanel = new JPanel();
 		mainPane.add(commandsPanel, "cell 0 1,growx");
-		commandsPanel.setLayout(new MigLayout("", "[20%][20%,grow][20%][20%][20%,grow]", "[25%][25%][25%][25%]"));
+		commandsPanel.setLayout(new MigLayout("", "[20%][20%][20%][20%][20%]", "[25%][25%][25%][25%][shrink 0]"));
 
 		lblFeedback = new JLabel("Feedback");
 		lblFeedback.setVisible(false);
@@ -227,5 +230,22 @@ public class View extends JFrame {
 	public void clearLblCommonFIle() {
 		lblCommonFile.setVisible(false);
 		lblCommonFile.setText("");
+	}
+	public JPanel getCommandsPanel() {
+		return commandsPanel;
+	}
+
+	/**
+	 * @return the advancedPanel
+	 */
+	public ViewAdvanced getAdvancedPanel() {
+		return advancedPanel;
+	}
+
+	/**
+	 * @param advancedPanel the advancedPanel to set
+	 */
+	public void setAdvancedPanel(ViewAdvanced advancedPanel) {
+		this.advancedPanel = advancedPanel;
 	}
 }
