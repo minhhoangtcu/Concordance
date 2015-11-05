@@ -47,9 +47,9 @@ public class TextBreaker {
 		boundary.setText(text);
         int start = boundary.first();
         for (int end = boundary.next(); end != BreakIterator.DONE; start = end, end = boundary.next()) {
-        	String adding = text.substring(start, end).trim();
+        	String adding = text.substring(start, end).trim().replaceAll("[^a-zA-Z ]", "").toLowerCase();
         	if (!containsSpecialCharacter(adding) && !adding.isEmpty()) {
-        		list.add(text.substring(start, end).replaceAll("[^a-zA-Z ]", "").toLowerCase());
+        		list.add(adding);
         	}
         }
         return list;
