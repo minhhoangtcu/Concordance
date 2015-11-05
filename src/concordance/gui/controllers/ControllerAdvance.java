@@ -2,6 +2,7 @@ package concordance.gui.controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import concordance.gui.Model;
 import concordance.gui.View;
 import concordance.gui.ViewAdvanced;
@@ -46,7 +47,14 @@ public class ControllerAdvance implements ActionListener {
 		view.setSize(900, 736);
 		view.setBtnAdvancedText("Hide Advanced");
 		view.setAdvancedPanel(advancedPanel);
+		
 		ControllerTextSimplify ctrText = new ControllerTextSimplify(view, model);
+		ControllerFreqAscendingly ctrFreqAsce = new ControllerFreqAscendingly(view, model);
+		ControllerFreqDescending ctrFreqDesc = new ControllerFreqDescending(view, model);
+		
 		view.getAdvancedPanel().getBtnSimplifyText().addActionListener(ctrText);
+		view.getAdvancedPanel().getBtnShowBiggestDecendingly().addActionListener(ctrFreqDesc);
+		view.getAdvancedPanel().getBtnShowSmallestAscendingly().addActionListener(ctrFreqAsce);
+		
 	}
 }
