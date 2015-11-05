@@ -29,10 +29,12 @@ public class ControllerAdvance implements ActionListener {
 			if (view.getAdvancedPanel().isVisible()) {
 				view.getAdvancedPanel().setVisible(false);
 				view.setSize(900, 700);
+				view.setBtnAdvancedText("Show Advanced");
 			}
 			else { 
 				view.getAdvancedPanel().setVisible(true);
 				view.setSize(900, 736);
+				view.setBtnAdvancedText("Hide Advanced");
 			}
 		}
 	}
@@ -42,5 +44,6 @@ public class ControllerAdvance implements ActionListener {
 		view.getCommandsPanel().add(advancedPanel, "cell 0 5 5 1,alignx center,aligny center,hidemode 1");
 		view.setAdvancedPanel(advancedPanel);
 		view.setSize(900, 736);
+		view.setBtnAdvancedText("Hide Advanced");
 	}
 }

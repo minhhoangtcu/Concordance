@@ -211,6 +211,10 @@ public class View extends JFrame {
 	public JButton getBtnAdvanced() {
 		return btnAdvanced;
 	}
+	
+	public void setBtnAdvancedText(String text) {
+		btnAdvanced.setText(text);
+	}
 
 	/**
 	 * @param displayField the displayField to set
