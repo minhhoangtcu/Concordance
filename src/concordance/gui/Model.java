@@ -126,7 +126,10 @@ public class Model {
 	 * @return the sortedMap
 	 */
 	public FrequencyMap getSortedMap() {
-		return sortedMap;
+		if (sortedMap == null)
+			return initSortedMap();
+		else 
+			return sortedMap;
 	}
 
 
