@@ -15,7 +15,7 @@ public class DisplayHelper {
 		return builder.toString();
 	}
 	
-	public static String getWorkAndContentSimple(WordNode word) {
+	public static String getWordAndContentSimple(WordNode word) {
 		StringBuilder builder = new StringBuilder();
 		builder.append(word.getWord() + "\n");
 		for (ContextNode cN : word) {

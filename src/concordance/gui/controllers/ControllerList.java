@@ -21,7 +21,7 @@ public class ControllerList implements MouseListener {
 		int row = view.getTable().getSelectedRow();
 		String word = (String) view.getTable().getValueAt(row, 0);
 		if (model.isSimple()) {
-			view.setDisplayFieldSimple(DisplayHelper.getWorkAndContentSimple(model.getWord(word)));
+			view.setDisplayFieldSimple(DisplayHelper.getWordAndContentSimple(model.getWord(word)));
 			view.setSimpleDisplayViewToTop();
 		}
 		else { 
