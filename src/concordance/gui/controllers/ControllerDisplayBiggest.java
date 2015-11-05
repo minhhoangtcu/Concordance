@@ -26,13 +26,23 @@ public class ControllerDisplayBiggest implements ActionListener {
 			int max = map.getMax();
 			Stack<WordNode> biggestStack = map.getMap().get(max);
 			StringBuilder builder = new StringBuilder();
-			builder.append("<h1 style='text-align: center; margin: 0px'> Most Occurrences </h1>");
-			builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Frequency: %d <p>", max));
-			for (WordNode word: biggestStack) {
-				builder.append(DisplayHelper.getWordAndContentHTML(word));
+			if (model.isSimple()) {
+				builder.append(String.format("Most Occurences \nFrequency: %d \n\n\n", max));
+				for (WordNode word: biggestStack) {
+					builder.append(DisplayHelper.getWordAndContentSimple(word));
+				}
+				view.setDisplayFieldSimple(builder.toString());
+				view.setSimpleDisplayViewToTop();
 			}
-			view.setDisplayFieldHTML(builder.toString());
-			view.setDisplayFieldViewToTop();
+			else {
+				builder.append("<h1 style='text-align: center; margin: 0px'> Most Occurrences </h1>");
+				builder.append(String.format("<p style='text-align: center; font-style: italic; margin: 0px'> Frequency: %d <p>", max));
+				for (WordNode word: biggestStack) {
+					builder.append(DisplayHelper.getWordAndContentHTML(word));
+				}
+				view.setDisplayFieldHTML(builder.toString());
+				view.setDisplayFieldViewToTop();
+			}
 		}
 		else {
 			view.setLblFeedback("Please load a concordance first!");
