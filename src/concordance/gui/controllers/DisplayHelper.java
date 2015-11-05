@@ -9,7 +9,7 @@ public class DisplayHelper {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<h2 style='font-family: Serif; color: navy'>" + word.getWord() + "</h2>");
 		for (ContextNode cN : word) {
-			builder.append(cN.toString() + "<br>");
+			builder.append(cN.toStringHTML() + "<br>");
 		}
 		builder.append("<br>");
 		return builder.toString();

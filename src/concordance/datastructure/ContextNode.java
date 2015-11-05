@@ -48,7 +48,7 @@ public class ContextNode implements ContextNodeInterface {
 		next = n;
 	}
 
-	public String toString() {
+	public String toStringHTML() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("<b>Paragraph number:</b> \t" + pNumber + "<br>");
 		builder.append("<b>Sentence number:</b> \t" + sNumber + "<br>");

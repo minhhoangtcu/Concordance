@@ -25,9 +25,8 @@ public class Model {
 	 * @param word the word that we want to display
 	 * @return the contexture information of input word 
 	 */
-	public String displayWord(String word) {
-		WordNode node = tree.get(word);
-		return "<html>" + node.toString() + "</html>";
+	public WordNode getWord(String word) {
+		return tree.get(word);
 	}
 	
 	/**
