@@ -22,7 +22,7 @@ public class ControllerDisplayBiggest implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (model.isInitialized()) {
-			FrequencyMap map = model.initSortedMap();
+			FrequencyMap map = model.getSortedMap();
 			int max = map.getMax();
 			Stack<WordNode> biggestStack = map.getMap().get(max);
 			StringBuilder builder = new StringBuilder();
@@ -43,6 +43,7 @@ public class ControllerDisplayBiggest implements ActionListener {
 				view.setDisplayFieldHTML(builder.toString());
 				view.setDisplayFieldViewToTop();
 			}
+			view.clearLblFeedback();
 		}
 		else {
 			view.setLblFeedback("Please load a concordance first!");

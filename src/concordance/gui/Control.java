@@ -9,7 +9,6 @@ import concordance.gui.controllers.ControllerFindWordsBeginWith;
 import concordance.gui.controllers.ControllerList;
 import concordance.gui.controllers.ControllerLoadConcordance;
 import concordance.gui.controllers.ControllerLoadFilter;
-import concordance.gui.controllers.ControllerTextSimplify;
 
 public class Control {
 	

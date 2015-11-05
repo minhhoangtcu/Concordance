@@ -21,7 +21,7 @@ public class ControllerDisplaySmallest implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (model.isInitialized()) {
-			FrequencyMap map = model.initSortedMap();
+			FrequencyMap map = model.getSortedMap();
 			int min = map.getMin();
 			Stack<WordNode> smallestStack = map.getMap().get(min);
 			StringBuilder builder = new StringBuilder();
@@ -42,6 +42,7 @@ public class ControllerDisplaySmallest implements ActionListener {
 				view.setDisplayFieldHTML(builder.toString());
 				view.setDisplayFieldViewToTop();
 			}
+			view.clearLblFeedback();
 		}
 		else {
 			view.setLblFeedback("Please load a concordance first!");
