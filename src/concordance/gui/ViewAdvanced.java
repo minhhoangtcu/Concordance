@@ -8,6 +8,9 @@ import java.awt.Color;
 public class ViewAdvanced extends JPanel {
 
 	JPanel panel;
+	private JButton btnShowBiggestDecendingly;
+	private JButton btnShowSmallestAscendingly;
+	private JButton btnSimplifyText;
 	
 	/**
 	 * Create the panel.
@@ -19,18 +22,30 @@ public class ViewAdvanced extends JPanel {
 		add(panel);
 		panel.setLayout(new GridLayout(1, 5, 0, 0));
 		
-		JButton btnShowBiggestAscendingly = new JButton("Show Biggest Ascendingly");
-		btnShowBiggestAscendingly.setBackground(Color.WHITE);
-		panel.add(btnShowBiggestAscendingly);
+		btnShowBiggestDecendingly = new JButton("Show Biggest Decendingly");
+		btnShowBiggestDecendingly.setBackground(Color.WHITE);
+		panel.add(btnShowBiggestDecendingly);
 		
-		JButton btnNewButton = new JButton("ShowSmallestAscendingly");
-		btnNewButton.setBackground(Color.WHITE);
-		panel.add(btnNewButton);
+		btnShowSmallestAscendingly = new JButton("Show Smallest Ascendingly");
+		btnShowSmallestAscendingly.setBackground(Color.WHITE);
+		panel.add(btnShowSmallestAscendingly);
 		
-		JButton btnNewButton_1 = new JButton("Turn On/Off Simple Text");
-		btnNewButton_1.setBackground(Color.WHITE);
-		panel.add(btnNewButton_1);
+		btnSimplifyText = new JButton("Turn On Simple Text");
+		btnSimplifyText.setBackground(Color.WHITE);
+		panel.add(btnSimplifyText);
 
 	}
 
+	public JButton getBtnShowBiggestDecendingly() {
+		return btnShowBiggestDecendingly;
+	}
+	public JButton getBtnShowSmallestAscendingly() {
+		return btnShowSmallestAscendingly;
+	}
+	public JButton getBtnSimplifyText() {
+		return btnSimplifyText;
+	}
+	public void setBtnSimplifyText(String text) {
+		btnSimplifyText.setText(text);
+	}
 }

@@ -101,6 +101,14 @@ public class WordNode implements WordNodeInterface, Iterable<ContextNode>{
 		builder.append("</html>");
 		return builder.toString();
 	}
+	
+	public String toStringSimple() {
+		StringBuilder builder = new StringBuilder();
+		for (ContextNode cN: this) {
+			builder.append(cN.toStringSimple() + "\n");
+		}
+		return builder.toString();
+	}
 
 	@Override
 	public Iterator<ContextNode> iterator() {

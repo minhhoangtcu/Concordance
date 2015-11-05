@@ -14,9 +14,11 @@ public class Model {
 	private ConcordanceTableModel tableModel;
 	private FrequencyMap sortedMap;
 	private boolean isInitialized;
+	private boolean isSimple;
 	
 	public Model() {
 		isInitialized = false;
+		isSimple = false;
 	}
 	
 	/**
@@ -131,5 +133,19 @@ public class Model {
 
 	public boolean isInitialized() {
 		return isInitialized;
+	}
+
+	/**
+	 * @return the isSimple
+	 */
+	public boolean isSimple() {
+		return isSimple;
+	}
+
+	/**
+	 * @param isSimple the isSimple to set
+	 */
+	public void flipSimple() {
+		isSimple = !isSimple;
 	}
 }

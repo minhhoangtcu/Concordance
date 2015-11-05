@@ -3,20 +3,22 @@ package concordance.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import concordance.ConcordanceApplication;
 import net.miginfocom.swing.MigLayout;
-import javax.swing.SwingConstants;
 
 public class View extends JFrame {
 
@@ -39,12 +41,15 @@ public class View extends JFrame {
 	private JLabel lblCommonFile;
 	private JPanel commandsPanel;
 	private ViewAdvanced advancedPanel;
+	private JScrollPane scrollPaneDisplay;
+	private JTextArea simpleTextArea;
 
 	/**
 	 * Create the frame.
 	 */
 	public View(ConcordanceApplication main) {
 		advancedPanel = null;
+		simpleTextArea = null;
 		this.main = main;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
@@ -63,7 +68,7 @@ public class View extends JFrame {
 		
 		displayField = new JTextPane();
 		displayField.setContentType("text/html");
-		JScrollPane scrollPaneDisplay = new JScrollPane(displayField);
+		scrollPaneDisplay = new JScrollPane(displayField);
 		displayPanel.add(scrollPaneDisplay, "cell 1 0,grow");
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -252,4 +257,33 @@ public class View extends JFrame {
 	public void setAdvancedPanel(ViewAdvanced advancedPanel) {
 		this.advancedPanel = advancedPanel;
 	}
+
+	/**
+	 * @return the displayPanel
+	 */
+	public JPanel getDisplayPanel() {
+		return displayPanel;
+	}
+
+	/**
+	 * @return the scrollPaneDisplay
+	 */
+	public JScrollPane getScrollPaneDisplay() {
+		return scrollPaneDisplay;
+	}
+
+	/**
+	 * @return the simpleTextArea
+	 */
+	public JTextArea getSimpleTextArea() {
+		return simpleTextArea;
+	}
+
+	/**
+	 * @param simpleTextArea the simpleTextArea to set
+	 */
+	public void setSimpleTextArea(JTextArea simpleTextArea) {
+		this.simpleTextArea = simpleTextArea;
+	}
+	
 }

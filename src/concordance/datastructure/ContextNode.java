@@ -55,5 +55,13 @@ public class ContextNode implements ContextNodeInterface {
 		builder.append("<b>Context:</b> " + context + "<br>");
 		return builder.toString();
 	}
+
+	public String toStringSimple() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Paragraph number: \t" + pNumber + "\n");
+		builder.append("Sentence number: \t" + sNumber + "\n");
+		builder.append("Context: " + context + "\n");
+		return builder.toString();
+	}
 	
 }

@@ -45,5 +45,8 @@ public class ControllerAdvance implements ActionListener {
 		view.setAdvancedPanel(advancedPanel);
 		view.setSize(900, 736);
 		view.setBtnAdvancedText("Hide Advanced");
+		view.setAdvancedPanel(advancedPanel);
+		ControllerTextSimplify ctrText = new ControllerTextSimplify(view, model);
+		view.getAdvancedPanel().getBtnSimplifyText().addActionListener(ctrText);
 	}
 }

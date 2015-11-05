@@ -18,7 +18,21 @@ public class ControllerTextSimplify implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		turnSimpleDisplay();
 	}
 
+	private void turnSimpleDisplay() {
+		if (model.isSimple()) {
+			view.getDisplayPanel().add(view.getScrollPaneDisplay(), "cell 1 0,grow");
+			view.getAdvancedPanel().setBtnSimplifyText("Turn On Simple Text");
+			model.flipSimple();
+		}
+		else {
+			view.getDisplayPanel().remove(view.getScrollPaneDisplay());
+			view.getAdvancedPanel().setBtnSimplifyText("Turn Off Simple Text");
+			model.flipSimple();
+		}
+		view.validate();
+		view.repaint();
+	}
 }
